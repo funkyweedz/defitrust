@@ -1,4 +1,5 @@
 const STORAGE_KEY = "defitrust-submissions";
+const MAX_CERTIFICATE_SIZE = 2 * 1024 * 1024;
 
 const baseProjects = [
   {
@@ -191,6 +192,10 @@ const auditForm = document.querySelector("#auditForm");
 const formStatus = document.querySelector("#formStatus");
 const reviewBoard = document.querySelector("#reviewBoard");
 const resetDemo = document.querySelector("#resetDemo");
+const exportData = document.querySelector("#exportData");
+const importData = document.querySelector("#importData");
+const certificateFile = document.querySelector("#certificateFile");
+const fileStatus = document.querySelector("#fileStatus");
 const certifiedCount = document.querySelector("#certifiedCount");
 const auditorCount = document.querySelector("#auditorCount");
 const securedTvl = document.querySelector("#securedTvl");
@@ -210,6 +215,32 @@ function loadSubmissions() {
 
 function saveSubmissions() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(submissions));
+}
+
+function readCertificate(file) {
+  return new Promise((resolve, reject) => {
+    if (!file || !file.name) {
+      reject(new Error("Please upload a certificate file."));
+      return;
+    }
+
+    if (file.size > MAX_CERTIFICATE_SIZE) {
+      reject(new Error("Certificate is too large. Please use a file under 2 MB for this browser demo."));
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      resolve({
+        certificateData: reader.result,
+        certificateType: file.type || "application/octet-stream",
+        fileName: file.name,
+        fileSize: file.size,
+      });
+    });
+    reader.addEventListener("error", () => reject(new Error("Could not read the certificate file.")));
+    reader.readAsDataURL(file);
+  });
 }
 
 function buildProjectList() {
@@ -240,6 +271,8 @@ function toProject(submission) {
         severity: `Critical: ${submission.critical} · Open high: ${submission.high}`,
         scope: submission.summary || "Scope provided in the certificate.",
         certificate: submission.fileName,
+        certificateData: submission.certificateData || "",
+        certificateType: submission.certificateType || "",
       },
     ],
   };
@@ -282,6 +315,51 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function formatBytes(bytes) {
+  if (!bytes) return "0 KB";
+  if (bytes < 1024 * 1024) return `${Math.ceil(bytes / 1024)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+function makeDownload(name, data) {
+  const link = document.createElement("a");
+  link.href = data;
+  link.download = name;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+}
+
+function makeJsonDownload(name, payload) {
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  makeDownload(name, url);
+  URL.revokeObjectURL(url);
+}
+
+function openCertificate(data) {
+  const win = window.open();
+  if (!win) {
+    formStatus.textContent = "Popup blocked. Use the download button instead.";
+    return;
+  }
+  win.document.write(`<iframe src="${data}" title="Audit certificate" style="border:0;width:100%;height:100vh"></iframe>`);
+  win.document.close();
+}
+
+function renderCertificateActions(audit, id) {
+  if (!audit.certificateData) {
+    return '<p class="certificate-note">Demo record only. No file attached.</p>';
+  }
+
+  return `
+    <div class="certificate-actions">
+      <button class="button secondary compact" type="button" data-view-certificate="${id}">View certificate</button>
+      <button class="button secondary compact" type="button" data-download-certificate="${id}">Download</button>
+    </div>
+  `;
 }
 
 function refreshState() {
@@ -380,7 +458,7 @@ function renderAuditDetail(project) {
       <div class="audit-list">
         ${project.audits
           .map(
-            (audit) => `
+            (audit, index) => `
               <article class="audit-card">
                 <div class="audit-card-header">
                   <h3>${escapeHtml(audit.auditor)}</h3>
@@ -390,6 +468,7 @@ function renderAuditDetail(project) {
                 <p><strong>Result:</strong> ${escapeHtml(audit.severity)}</p>
                 <p><strong>Scope:</strong> ${escapeHtml(audit.scope)}</p>
                 <p><strong>Certificate:</strong> ${escapeHtml(audit.certificate)}</p>
+                ${renderCertificateActions(audit, `${encodeURIComponent(project.name)}::${index}`)}
               </article>
             `
           )
@@ -424,12 +503,20 @@ function renderReviewBoard() {
           <div class="review-meta">
             <span>Certificate</span>
             <strong>${escapeHtml(submission.fileName)}</strong>
+            <span>Size</span>
+            <strong>${formatBytes(submission.fileSize)}</strong>
             <span>Hash</span>
             <code>${escapeHtml(compactHash(submission.hash))}</code>
             <span>Open risks</span>
             <strong>${submission.critical} critical · ${submission.high} high</strong>
           </div>
           <div class="review-actions">
+            <button class="button secondary compact" type="button" data-view-submission="${submission.id}" ${submission.certificateData ? "" : "disabled"}>
+              View
+            </button>
+            <button class="button secondary compact" type="button" data-download-submission="${submission.id}" ${submission.certificateData ? "" : "disabled"}>
+              Download
+            </button>
             <button class="button primary compact" type="button" data-approve="${submission.id}" ${submission.status === "approved" ? "disabled" : ""}>
               Approve
             </button>
@@ -452,6 +539,21 @@ projectGrid.addEventListener("click", (event) => {
   auditDetail.scrollIntoView({ behavior: "smooth", block: "start" });
 });
 
+auditDetail.addEventListener("click", (event) => {
+  const viewButton = event.target.closest("[data-view-certificate]");
+  const downloadButton = event.target.closest("[data-download-certificate]");
+  const actionId = viewButton?.dataset.viewCertificate || downloadButton?.dataset.downloadCertificate;
+  if (!actionId) return;
+
+  const [projectName, index] = actionId.split("::");
+  const project = projects.find((item) => item.name === decodeURIComponent(projectName));
+  const audit = project?.audits[Number(index)];
+  if (!audit?.certificateData) return;
+
+  if (viewButton) openCertificate(audit.certificateData);
+  if (downloadButton) makeDownload(audit.certificate, audit.certificateData);
+});
+
 projectSearch.addEventListener("input", renderProjects);
 categoryFilter.addEventListener("change", renderProjects);
 
@@ -462,11 +564,32 @@ verifiedToggle.addEventListener("click", () => {
   renderProjects();
 });
 
-auditForm.addEventListener("submit", (event) => {
+certificateFile.addEventListener("change", () => {
+  const file = certificateFile.files[0];
+  fileStatus.textContent = file ? `${file.name} · ${formatBytes(file.size)}` : "No file selected";
+  fileStatus.classList.toggle("file-error", Boolean(file && file.size > MAX_CERTIFICATE_SIZE));
+});
+
+auditForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const data = new FormData(auditForm);
   const file = data.get("certificate");
   const projectName = String(data.get("project")).trim();
+
+  formStatus.textContent = "";
+
+  if (projects.some((project) => project.name.toLowerCase() === projectName.toLowerCase())) {
+    formStatus.textContent = "A project with this name already exists in DeFiTrust.";
+    return;
+  }
+
+  let filePayload;
+  try {
+    filePayload = await readCertificate(file);
+  } catch (error) {
+    formStatus.textContent = error.message;
+    return;
+  }
 
   const submission = {
     id: crypto.randomUUID(),
@@ -480,7 +603,10 @@ auditForm.addEventListener("submit", (event) => {
     high: Number(data.get("high") || 0),
     hash: String(data.get("hash")).trim() || generateHash(`${projectName}-${file.name}`),
     summary: String(data.get("summary")).trim(),
-    fileName: file?.name || "Unnamed certificate",
+    fileName: filePayload.fileName,
+    fileSize: filePayload.fileSize,
+    certificateData: filePayload.certificateData,
+    certificateType: filePayload.certificateType,
     submittedAt: new Date().toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" }),
     reviewedAt: "",
     status: "pending",
@@ -490,6 +616,8 @@ auditForm.addEventListener("submit", (event) => {
   saveSubmissions();
   formStatus.textContent = `${projectName} is now in the DeFiTrust verification queue.`;
   auditForm.reset();
+  fileStatus.textContent = "No file selected";
+  fileStatus.classList.remove("file-error");
   refreshState();
   document.querySelector("#review").scrollIntoView({ behavior: "smooth", block: "start" });
 });
@@ -497,6 +625,18 @@ auditForm.addEventListener("submit", (event) => {
 reviewBoard.addEventListener("click", (event) => {
   const approveButton = event.target.closest("[data-approve]");
   const rejectButton = event.target.closest("[data-reject]");
+  const viewButton = event.target.closest("[data-view-submission]");
+  const downloadButton = event.target.closest("[data-download-submission]");
+
+  if (viewButton || downloadButton) {
+    const id = viewButton?.dataset.viewSubmission || downloadButton?.dataset.downloadSubmission;
+    const submission = submissions.find((item) => item.id === id);
+    if (!submission?.certificateData) return;
+
+    if (viewButton) openCertificate(submission.certificateData);
+    if (downloadButton) makeDownload(submission.fileName, submission.certificateData);
+    return;
+  }
 
   if (approveButton) {
     submissions = submissions.map((submission) =>
@@ -523,6 +663,40 @@ resetDemo.addEventListener("click", () => {
   saveSubmissions();
   refreshState();
   formStatus.textContent = "Demo reset.";
+});
+
+exportData.addEventListener("click", () => {
+  const payload = {
+    app: "DeFiTrust",
+    version: 1,
+    exportedAt: new Date().toISOString(),
+    submissions,
+  };
+  makeJsonDownload("defitrust-data.json", payload);
+});
+
+importData.addEventListener("change", () => {
+  const file = importData.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.addEventListener("load", () => {
+    try {
+      const payload = JSON.parse(reader.result);
+      const imported = Array.isArray(payload) ? payload : payload.submissions;
+      if (!Array.isArray(imported)) throw new Error("Invalid DeFiTrust data file.");
+
+      submissions = imported.filter((item) => item.id && item.project && item.auditor && item.fileName);
+      saveSubmissions();
+      refreshState();
+      formStatus.textContent = `${submissions.length} submissions imported.`;
+    } catch (error) {
+      formStatus.textContent = error.message;
+    } finally {
+      importData.value = "";
+    }
+  });
+  reader.readAsText(file);
 });
 
 refreshState();

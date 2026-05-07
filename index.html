@@ -167,6 +167,7 @@
             <input id="certificateFile" name="certificate" type="file" accept=".pdf,.png,.jpg,.jpeg" required />
             <span>Drop the PDF or image certificate</span>
             <small>PDF, PNG, or JPG · public hash recommended</small>
+            <strong id="fileStatus">No file selected</strong>
           </label>
 
           <label>
@@ -185,7 +186,12 @@
             <p class="eyebrow">Operations</p>
             <h2 id="review-title">Verification queue</h2>
           </div>
-          <button class="button secondary compact" id="resetDemo" type="button">Reset demo</button>
+          <div class="review-tools">
+            <button class="button secondary compact" id="exportData" type="button">Export data</button>
+            <label class="button secondary compact import-trigger" for="importData">Import data</label>
+            <input id="importData" class="hidden-input" type="file" accept="application/json,.json" />
+            <button class="button secondary compact" id="resetDemo" type="button">Reset demo</button>
+          </div>
         </div>
         <div class="review-board" id="reviewBoard" aria-live="polite"></div>
       </section>

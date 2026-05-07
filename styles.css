@@ -199,6 +199,15 @@ main {
   white-space: nowrap;
 }
 
+.hidden-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .trust-panel,
 .stats article,
 .project-card,
@@ -526,6 +535,20 @@ textarea::placeholder {
   line-height: 1.5;
 }
 
+.certificate-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.certificate-note {
+  margin-top: 1rem;
+  color: var(--soft);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
 .submit-section,
 .review-section {
   margin-bottom: 4rem;
@@ -586,6 +609,16 @@ label {
   color: var(--soft);
 }
 
+.upload-box strong {
+  color: var(--mint);
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+.upload-box strong.file-error {
+  color: var(--amber);
+}
+
 .form-status {
   min-height: 1.5rem;
   margin: 0;
@@ -601,6 +634,17 @@ label {
 .review-board {
   display: grid;
   gap: 1rem;
+}
+
+.review-tools {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
+.import-trigger {
+  margin: 0;
 }
 
 .review-item {
@@ -639,7 +683,8 @@ label {
   gap: 0.6rem;
 }
 
-.review-actions .button:disabled {
+.review-actions .button:disabled,
+.certificate-actions .button:disabled {
   cursor: not-allowed;
   opacity: 0.55;
   transform: none;
@@ -674,6 +719,10 @@ label {
   }
 
   .review-actions {
+    justify-content: flex-start;
+  }
+
+  .review-tools {
     justify-content: flex-start;
   }
 
