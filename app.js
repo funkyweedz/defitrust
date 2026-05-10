@@ -4,6 +4,8 @@ const MAX_CERTIFICATE_SIZE = 2 * 1024 * 1024;
 const baseProjects = [
   {
     name: "Aave V3",
+    sortDate: "2025-01-22",
+    panelAuditor: "Sherlock · Critical: 0",
     initials: "AV",
     category: "Lending",
     network: "ETH",
@@ -100,6 +102,8 @@ const baseProjects = [
   },
   {
     name: "Uniswap V4",
+    sortDate: "2024-08-30",
+    panelAuditor: "OpenZeppelin · Critical: 1 resolved",
     initials: "UV",
     category: "DEX",
     network: "ETH/ARB",
@@ -183,6 +187,8 @@ const baseProjects = [
   },
   {
     name: "Curve Finance",
+    sortDate: "2025-01-01",
+    panelAuditor: "ChainSecurity · Fast Bridge",
     initials: "CF",
     category: "DEX",
     network: "Multi",
@@ -246,6 +252,8 @@ const baseProjects = [
   },
   {
     name: "LayerZero",
+    sortDate: "2023-12-14",
+    panelAuditor: "OtterSec · Critical: 0",
     initials: "LZ",
     category: "Bridge",
     network: "Multi-chain",
@@ -315,6 +323,8 @@ const baseProjects = [
   },
   {
     name: "Ethena",
+    sortDate: "2024-10-31",
+    panelAuditor: "Cyfrin · Critical: 0",
     initials: "EN",
     category: "Stablecoin",
     network: "ETH",
@@ -412,6 +422,8 @@ const baseProjects = [
   },
   {
     name: "Morpho Blue",
+    sortDate: "2024-01-05",
+    panelAuditor: "Cantina · Critical: 0",
     initials: "MB",
     category: "Lending",
     network: "ETH/Base",
@@ -475,6 +487,8 @@ const baseProjects = [
   },
   {
     name: "Jupiter Exchange",
+    sortDate: "2025-11-20",
+    panelAuditor: "OtterSec · Critical: 0",
     initials: "JX",
     category: "DEX",
     network: "Solana",
@@ -568,6 +582,8 @@ const baseProjects = [
   },
   {
     name: "Meteora",
+    sortDate: "2025-06-30",
+    panelAuditor: "Offside Labs · DAMM v2",
     initials: "MT",
     category: "DEX",
     network: "Solana",
@@ -864,10 +880,22 @@ function renderCertificateActions(audit, id) {
   `;
 }
 
+function renderLatestAttestation() {
+  const latest = baseProjects
+    .filter((p) => p.sortDate)
+    .reduce((a, b) => (a.sortDate > b.sortDate ? a : b));
+
+  document.querySelector("#latestProject").textContent = latest.name;
+  document.querySelector("#latestAuditor").textContent = latest.panelAuditor;
+  document.querySelector("#latestHash").textContent = compactHash(latest.hash);
+  document.querySelector("#latestDate").textContent = new Date(latest.sortDate).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+}
+
 function refreshState() {
   projects = buildProjectList();
   renderStats();
   renderProjects();
+  renderLatestAttestation();
   renderReviewBoard();
 
   const updatedSelection = projects.find((project) => project.name === selectedProject?.name) || projects[1];
