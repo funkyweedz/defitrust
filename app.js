@@ -566,6 +566,115 @@ const baseProjects = [
       },
     ],
   },
+  {
+    name: "Meteora",
+    initials: "MT",
+    category: "DEX",
+    network: "Solana",
+    reports: 10,
+    tvl: "$340M",
+    verified: true,
+    score: 82,
+    scoreBreakdown: "Base 100 · 1 no-PDF GitHub index −4 · 2 Halborn reports from Jul 2022 outdated >36 months −14",
+    avatar: "amber",
+    website: "https://meteora.ag",
+    hash: "Official Meteora audit repository",
+    summary:
+      "Trust score 82/100 — 10 key PDFs all accessible across DAMM v1/v2, DLMM, Dynamic Vault, and Alpha Vault. Most reports from 2024-2025. Two Halborn reports from July 2022 are 46 months old. Score: base 100 − 1 no-PDF (−4) − 2 outdated >36m (−14).",
+    audits: [
+      {
+        auditor: "Meteora",
+        date: "2025",
+        severity: "Official GitHub audit repository — no direct PDF",
+        scope: "All Meteora public audit reports",
+        certificate: "Meteora Audits Repository",
+        reportUrl: "https://github.com/MeteoraAg/audits",
+        flags: ["no-pdf"],
+      },
+      {
+        auditor: "OtterSec",
+        date: "April 2025",
+        severity: "DAMM v2 security audit · Critical: 0",
+        scope: "Meteora DAMM v2",
+        certificate: "ottersec-damm-v2-audit-apr-2025.pdf",
+        reportUrl: "https://github.com/MeteoraAg/audits/blob/main/damm-v2/ottersec-damm-v2-audit-apr-2025.pdf",
+      },
+      {
+        auditor: "Offside Labs",
+        date: "June 2025",
+        severity: "DAMM v2 security audit",
+        scope: "Meteora DAMM v2",
+        certificate: "offside-labs-damm-v2-audit-jun-2025.pdf",
+        reportUrl: "https://github.com/MeteoraAg/audits/blob/main/damm-v2/offside-labs-damm-v2-audit-jun-2025.pdf",
+      },
+      {
+        auditor: "Zenith",
+        date: "June 2025",
+        severity: "DAMM v2 security audit",
+        scope: "Meteora DAMM v2",
+        certificate: "zenith-damm-v2-audit-june-2025-1.pdf",
+        reportUrl: "https://github.com/MeteoraAg/audits/blob/main/damm-v2/zenith-damm-v2-audit-june-2025-1.pdf",
+      },
+      {
+        auditor: "OtterSec",
+        date: "February 2024",
+        severity: "DLMM security audit · Critical: 0",
+        scope: "Meteora DLMM",
+        certificate: "ottersec-dlmm-audit-feb-2024.pdf",
+        reportUrl: "https://github.com/MeteoraAg/audits/blob/main/dlmm/ottersec-dlmm-audit-feb-2024.pdf",
+      },
+      {
+        auditor: "Offside Labs",
+        date: "January 2024",
+        severity: "DLMM security audit",
+        scope: "Meteora DLMM",
+        certificate: "offside-labs-dlmm-audit-jan-2024.pdf",
+        reportUrl: "https://github.com/MeteoraAg/audits/blob/main/dlmm/offside-labs-dlmm-audit-jan-2024.pdf",
+      },
+      {
+        auditor: "Sec3",
+        date: "February 2024",
+        severity: "DLMM security audit",
+        scope: "Meteora DLMM",
+        certificate: "sec3-dlmm-audit-feb-2024.pdf",
+        reportUrl: "https://github.com/MeteoraAg/audits/blob/main/dlmm/sec3-dlmm-audit-feb-2024.pdf",
+      },
+      {
+        auditor: "Sherlock",
+        date: "2024",
+        severity: "Dynamic Vault security audit · Critical: 0",
+        scope: "Meteora Dynamic Vault",
+        certificate: "sherlock-dynamic-vault-audit-0.9.4.pdf",
+        reportUrl: "https://github.com/MeteoraAg/audits/blob/main/dynamic-vault/sherlock-dynamic-vault-audit-0.9.4.pdf",
+      },
+      {
+        auditor: "Offside Labs",
+        date: "May 2024",
+        severity: "Alpha Vault security audit",
+        scope: "Meteora Alpha Vault",
+        certificate: "offside-labs-alpha-vault-may-2024.pdf",
+        reportUrl: "https://github.com/MeteoraAg/audits/blob/main/alpha-vault/offside-labs-alpha-vault-may-2024.pdf",
+      },
+      {
+        auditor: "Halborn",
+        date: "July 2022",
+        severity: "Dynamic Vault security audit — outdated 46 months",
+        scope: "Meteora Dynamic Vault",
+        certificate: "halborn-dynamic-vault-audit-jul-2022.pdf",
+        reportUrl: "https://github.com/MeteoraAg/audits/blob/main/dynamic-vault/halborn-dynamic-vault-audit-jul-2022.pdf",
+        flags: ["outdated"],
+      },
+      {
+        auditor: "Halborn",
+        date: "July 2022",
+        severity: "DAMM v1 security audit — outdated 46 months",
+        scope: "Meteora DAMM v1",
+        certificate: "halborn-damm-v1-jul-2022-audit.pdf",
+        reportUrl: "https://github.com/MeteoraAg/audits/blob/main/damm-v1/halborn-damm-v1-jul-2022-audit.pdf",
+        flags: ["outdated"],
+      },
+    ],
+  },
 ];
 
 const projectGrid = document.querySelector("#projectGrid");
@@ -767,7 +876,7 @@ function refreshState() {
 
 const PROJECT_TEAM_NAMES = new Set([
   "Aave Labs", "Uniswap Labs", "Curve Finance", "LayerZero Labs",
-  "Ethena Labs", "Morpho Labs", "Jupiter Labs",
+  "Ethena Labs", "Morpho Labs", "Jupiter Labs", "Meteora",
 ]);
 
 function renderStats() {
@@ -780,7 +889,7 @@ function renderStats() {
 
   certifiedCount.textContent = String(certified);
   auditorCount.textContent = String(auditors);
-  securedTvl.textContent = "$34.9B";
+  securedTvl.textContent = "$35.2B";
 }
 
 function renderProjects() {
