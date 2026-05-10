@@ -769,7 +769,7 @@ function renderStats() {
   const certified = projects.filter((project) => project.verified).length;
   const auditors = new Set(projects.flatMap((project) => project.audits.map((audit) => audit.auditor))).size;
 
-  certifiedCount.textContent = String(209 + certified);
+  certifiedCount.textContent = String(certified);
   auditorCount.textContent = String(auditors);
   securedTvl.textContent = "$34.9B";
 }
