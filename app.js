@@ -7,63 +7,94 @@ const baseProjects = [
     initials: "AV",
     category: "Lending",
     network: "ETH",
-    reports: 6,
-    tvl: "$1.8B",
+    reports: 9,
+    tvl: "$15.5B",
     verified: true,
-    score: 96,
+    score: 74,
+    scoreBreakdown: "Base 100 · 1 no-PDF link −4 · 5 original reports outdated >36-48 months −22",
     avatar: "mint",
     website: "https://aave.com",
     hash: "Official audit registry",
     summary:
-      "Aave publishes a complete security page with audit reports for V4, V3.6, V3.5, V3.4, Aptos, Umbrella, GHO, Governance, V2 and V3.",
+      "Trust score 74/100 — original V3 audits (Jan 2022) are 48+ months old; 3 PDF links had broken paths now corrected. Protocol actively re-audited in 2024-2025 by Sherlock, Certora and Pashov. Score: base 100 − 1 no-PDF (−4) − 5 reports outdated >36m (−22).",
     audits: [
       {
         auditor: "Aave Labs",
-        date: "May 7, 2026",
-        severity: "Official audit registry",
+        date: "May 2026",
+        severity: "Official security page — no direct PDF",
         scope: "All Aave public audit reports",
         certificate: "Aave Security Audit Registry",
         reportUrl: "https://aave.com/security",
+        flags: ["no-pdf"],
+      },
+      {
+        auditor: "Sherlock",
+        date: "January 22, 2025",
+        severity: "Aave V3.3 security contest — Critical: 0",
+        scope: "Aave V3.3 protocol contracts",
+        certificate: "2025-01-22_Sherlock_Aave-v3.3.0.pdf",
+        reportUrl: "https://github.com/aave-dao/aave-v3-origin/blob/main/audits/2025-01-22_Sherlock_Aave-v3.3.0.pdf",
+      },
+      {
+        auditor: "Certora",
+        date: "November 7, 2024",
+        severity: "Aave V3.3 formal verification",
+        scope: "Aave V3.3 core contracts",
+        certificate: "2024-11-07_Certora_Aave-v3.3.0.pdf",
+        reportUrl: "https://github.com/aave-dao/aave-v3-origin/blob/main/audits/2024-11-07_Certora_Aave-v3.3.0.pdf",
+      },
+      {
+        auditor: "Pashov Audit Group",
+        date: "September 15, 2024",
+        severity: "Aave V3.2 security review",
+        scope: "Aave V3.2 contracts",
+        certificate: "2024-09-15_Pashov_Aave-v3.2.pdf",
+        reportUrl: "https://github.com/aave-dao/aave-v3-origin/blob/main/audits/2024-09-15_Pashov_Aave-v3.2.pdf",
       },
       {
         auditor: "OpenZeppelin",
         date: "October 2021",
-        severity: "Aave V3 round 1 security audit",
+        severity: "Aave V3 round 1 security audit — outdated 48+ months",
         scope: "Aave V3 core protocol contracts",
-        certificate: "OpenZeppelin Aave V3 Audit",
-        reportUrl: "https://github.com/aave/aave-v3-core/blob/master/audits/01-11-2021_OpenZeppelin_AaveV3.pdf",
+        certificate: "2021-11-01_OpenZeppelin_AaveV3.pdf",
+        reportUrl: "https://github.com/aave-dao/aave-v3-origin/blob/main/audits/2021-11-01_OpenZeppelin_AaveV3.pdf",
+        flags: ["outdated"],
       },
       {
         auditor: "Trail of Bits",
         date: "January 7, 2022",
-        severity: "Aave V3 security assessment",
+        severity: "Aave V3 security assessment — outdated 48+ months",
         scope: "Aave V3 core protocol contracts",
-        certificate: "Trail of Bits Aave V3 Report",
-        reportUrl: "https://github.com/aave-dao/aave-v3-origin/blob/main/audits/07-01-2022_TrailOfBits_AaveV3.pdf",
+        certificate: "2022-01-07_TrailOfBits_AaveV3.pdf",
+        reportUrl: "https://github.com/aave-dao/aave-v3-origin/blob/main/audits/2022-01-07_TrailOfBits_AaveV3.pdf",
+        flags: ["outdated"],
       },
       {
         auditor: "ABDK",
         date: "January 27, 2022",
-        severity: "Aave V3 smart contract audit",
+        severity: "Aave V3 smart contract audit — outdated 48+ months",
         scope: "Aave V3 protocol math and smart contracts",
-        certificate: "ABDK Aave V3 Audit",
-        reportUrl: "https://github.com/aave-dao/aave-v3-origin/blob/main/audits/27-01-2022_ABDK_AaveV3.pdf",
+        certificate: "2022-01-27_ABDK_AaveV3.pdf",
+        reportUrl: "https://github.com/aave-dao/aave-v3-origin/blob/main/audits/2022-01-27_ABDK_AaveV3.pdf",
+        flags: ["outdated"],
       },
       {
         auditor: "Sigma Prime",
         date: "January 27, 2022",
-        severity: "Aave V3 security assessment",
+        severity: "Aave V3 security assessment — outdated 48+ months",
         scope: "Aave V3 protocol contracts",
-        certificate: "Sigma Prime Aave V3 Audit",
-        reportUrl: "https://github.com/aave-dao/aave-v3-origin/blob/main/audits/27-01-2022_SigmaPrime_AaveV3.pdf",
+        certificate: "2022-01-27_SigmaPrime_AaveV3.pdf",
+        reportUrl: "https://github.com/aave-dao/aave-v3-origin/blob/main/audits/2022-01-27_SigmaPrime_AaveV3.pdf",
+        flags: ["outdated"],
       },
       {
         auditor: "Certora",
         date: "January 2022",
-        severity: "Formal verification report",
+        severity: "Formal verification — outdated 48+ months",
         scope: "Aave Protocol V3 formal verification",
-        certificate: "Certora Aave V3 Formal Verification",
+        certificate: "Aave_V3_Formal_Verification_Report_Jan2022.pdf",
         reportUrl: "https://github.com/aave/aave-v3-core/blob/master/certora/Aave_V3_Formal_Verification_Report_Jan2022.pdf",
+        flags: ["outdated"],
       },
     ],
   },
@@ -73,37 +104,39 @@ const baseProjects = [
     category: "DEX",
     network: "ETH/ARB",
     reports: 8,
-    tvl: "$3.1B",
+    tvl: "$3.6B",
     verified: true,
-    score: 98,
+    score: 96,
+    scoreBreakdown: "Base 100 · 1 no-PDF link (official site) −4 · 7 reports all accessible, all from 2024",
     avatar: "blue",
     website: "https://uniswap.org",
     hash: "Official v4 audit folders",
     summary:
-      "Uniswap v4 has public Core and Periphery audit folders with independent reviews from OpenZeppelin, Trail of Bits, Spearbit, Certora, ABDK and the v4 security competition.",
+      "Trust score 96/100 — 7 of 8 audit PDFs directly accessible on GitHub, all from 2024. Minor deduction for the official site link (no direct PDF). Score: base 100 − 1 no-PDF (−4).",
     audits: [
       {
         auditor: "Uniswap Labs",
         date: "January 2025",
-        severity: "Official v4 reports index",
+        severity: "Official v4 reports index — no direct PDF",
         scope: "Core and Periphery audit folders",
         certificate: "Uniswap v4 Audit Reports",
         reportUrl: "https://v4.uniswap.org/",
+        flags: ["no-pdf"],
       },
       {
         auditor: "OpenZeppelin",
         date: "August 27, 2024",
         severity: "Core audit · 1 critical resolved · 0 high",
         scope: "Uniswap v4 core contracts",
-        certificate: "OpenZeppelin v4 Core Audit",
+        certificate: "OpenZeppelin_audit_core.pdf",
         reportUrl: "https://github.com/Uniswap/v4-core/blob/main/docs/security/audits/OpenZeppelin_audit_core.pdf",
       },
       {
         auditor: "Trail of Bits",
         date: "2024",
-        severity: "Core security review",
+        severity: "Core security review · Critical: 0",
         scope: "Uniswap v4 core contracts",
-        certificate: "Trail of Bits v4 Core Audit",
+        certificate: "TrailOfBits_audit_core.pdf",
         reportUrl: "https://github.com/Uniswap/v4-core/blob/main/docs/security/audits/TrailOfBits_audit_core.pdf",
       },
       {
@@ -111,7 +144,7 @@ const baseProjects = [
         date: "2024",
         severity: "Core security review",
         scope: "Uniswap v4 core contracts",
-        certificate: "Spearbit v4 Core Audit",
+        certificate: "DRAFT_Spearbit_audit_core.pdf",
         reportUrl: "https://github.com/Uniswap/v4-core/blob/main/docs/security/audits/DRAFT_Spearbit_audit_core.pdf",
       },
       {
@@ -119,7 +152,7 @@ const baseProjects = [
         date: "2024",
         severity: "Core audit and formal verification",
         scope: "Uniswap v4 core contracts",
-        certificate: "Certora v4 Core Audit",
+        certificate: "DRAFT_Certora_audit_core.pdf",
         reportUrl: "https://github.com/Uniswap/v4-core/blob/main/docs/security/audits/DRAFT_Certora_audit_core.pdf",
       },
       {
@@ -127,7 +160,7 @@ const baseProjects = [
         date: "2024",
         severity: "Core audit",
         scope: "Uniswap v4 core contracts",
-        certificate: "ABDK v4 Core Audit",
+        certificate: "DRAFT_ABDK_audit_core.pdf",
         reportUrl: "https://github.com/Uniswap/v4-core/blob/main/docs/security/audits/DRAFT_ABDK_audit_core.pdf",
       },
       {
@@ -135,7 +168,7 @@ const baseProjects = [
         date: "August 30, 2024",
         severity: "Periphery audit · 1 critical and 1 high resolved",
         scope: "Uniswap v4 Periphery and Universal Router",
-        certificate: "OpenZeppelin v4 Periphery Audit",
+        certificate: "OpenZeppelin_audit_periphery_universal_router.pdf",
         reportUrl: "https://github.com/Uniswap/v4-periphery/blob/main/audits/OpenZeppelin_audit_periphery_universal_router.pdf",
       },
       {
@@ -143,7 +176,7 @@ const baseProjects = [
         date: "2024",
         severity: "Periphery security review",
         scope: "Uniswap v4 Periphery contracts",
-        certificate: "Spearbit v4 Periphery Audit",
+        certificate: "DRAFT_Spearbit_audit_periphery.pdf",
         reportUrl: "https://github.com/Uniswap/v4-periphery/blob/main/audits/DRAFT_Spearbit_audit_periphery.pdf",
       },
     ],
@@ -154,78 +187,129 @@ const baseProjects = [
     category: "DEX",
     network: "Multi",
     reports: 5,
-    tvl: "$2.2B",
+    tvl: "$1.7B",
     verified: true,
-    score: 92,
+    score: 36,
+    scoreBreakdown: "Base 100 · 3 broken links −45 · 2 no-PDF links −10 · 2 reports outdated >24 months −9",
     avatar: "rose",
     website: "https://curve.fi",
     hash: "Official Curve audit assets",
     summary:
-      "Curve publishes protocol audit reports across StableSwap NG, crvUSD, DAO voting, Fee Splitter, and Fast Bridge modules.",
+      "Trust score 36/100 — 3 of 5 audit PDFs return 404, 2 reports have no direct PDF, and the crvUSD audits (June 2023) are over 24 months old. Score computed: base 100 − 3 broken links (−45) − 2 no-PDF pages (−10) − 2 outdated reports >24 months (−9).",
     audits: [
       {
         auditor: "Curve Finance",
         date: "2025",
-        severity: "Official documentation index",
+        severity: "Official documentation index — no direct PDF",
         scope: "Curve technical documentation and audit assets",
         certificate: "Curve Technical Docs",
         reportUrl: "https://dev.curve.finance/",
+        flags: ["no-pdf"],
       },
       {
         auditor: "MixBytes",
         date: "November 1, 2023",
-        severity: "StableSwap NG security audit",
+        severity: "StableSwap NG security audit — report link broken (404)",
         scope: "Curve StableSwap NG contracts",
         certificate: "Curve StableSwapNG Security Audit Report",
         reportUrl: "https://docs.curve.finance/assets/pdf/audits/Curve%20Finance%20StableSwapNG%20Security%20Audit%20Report.pdf",
+        flags: ["broken"],
       },
       {
         auditor: "ChainSecurity",
         date: "June 2023",
-        severity: "crvUSD stablecoin assessment",
+        severity: "crvUSD stablecoin assessment — report link broken (404) · outdated 24 months",
         scope: "Curve Stablecoin smart contracts",
         certificate: "ChainSecurity Curve Stablecoin Audit",
         reportUrl: "https://docs.curve.finance/assets/pdf/audits/ChainSecurity_Curve_Curve_Stablecoin_audit-1.pdf",
+        flags: ["broken", "outdated"],
       },
       {
         auditor: "MixBytes",
         date: "June 5, 2023",
-        severity: "crvUSD security audit",
+        severity: "crvUSD security audit — report link broken (404) · outdated 24 months",
         scope: "Curve Stablecoin smart contracts",
         certificate: "Curve crvUSD Security Audit Report",
         reportUrl: "https://docs.curve.finance/assets/pdf/audits/Curve%20Stablecoin%20%28crvUSD%29%20Security%20Audit%20Report.pdf",
+        flags: ["broken", "outdated"],
       },
       {
         auditor: "ChainSecurity",
         date: "2025",
-        severity: "Fast Bridge security audit",
+        severity: "Fast Bridge security audit — no direct PDF, webpage only",
         scope: "Curve Fast Bridge contracts",
         certificate: "ChainSecurity Curve Fast Bridge Audit",
         reportUrl: "https://www.chainsecurity.com/security-audit/curve-fast-bridge",
+        flags: ["no-pdf"],
       },
     ],
   },
   {
-    name: "LayerGate",
-    initials: "LG",
+    name: "LayerZero",
+    initials: "LZ",
     category: "Bridge",
-    network: "Base",
-    reports: 1,
-    tvl: "$420M",
-    verified: false,
-    score: 73,
-    avatar: "amber",
-    website: "https://layergate.example",
-    hash: "Pending",
+    network: "Multi-chain",
+    reports: 6,
+    tvl: "N/A",
+    verified: true,
+    score: 84,
+    scoreBreakdown: "Base 100 · 1 no-PDF GitHub index −4 · 1 V1 report outdated >48 months −9 · 1 DVN report aged 21 months −3",
+    avatar: "blue",
+    website: "https://layerzero.network",
+    hash: "Official LayerZero audit repository",
     summary:
-      "Audit currently under DeFiTrust review. Remediation evidence and the auditor's final signature are still pending.",
+      "Trust score 84/100 — all 5 PDFs accessible on GitHub. V2 reports from Dec 2023 are 17 months old. V1 Zellic report from June 2022 is outdated (>48 months). Score: base 100 − 1 no-PDF index (−4) − 1 V1 outdated >48m (−9) − 1 DVN aged 21m (−3).",
     audits: [
       {
-        auditor: "Quantstamp",
-        date: "Under review",
-        severity: "Critical: 1 open · High: 2 in remediation",
-        scope: "Bridge messenger, relayer, withdrawals",
-        certificate: "LayerGate-Draft.pdf",
+        auditor: "LayerZero Labs",
+        date: "2024",
+        severity: "Official GitHub audit repository — no direct PDF",
+        scope: "All LayerZero public audit reports",
+        certificate: "LayerZero Audits Repository",
+        reportUrl: "https://github.com/LayerZero-Labs/Audits",
+        flags: ["no-pdf"],
+      },
+      {
+        auditor: "Zellic",
+        date: "December 13, 2023",
+        severity: "Critical: 0 · High: 0",
+        scope: "Endpoint V2 - EVM core contracts",
+        certificate: "EndpointV2-Zellic-13DEC2023.pdf",
+        reportUrl: "https://github.com/LayerZero-Labs/Audits/blob/main/audits/Endpoint%20V2%20-%20EVM/EndpointV2/EndpointV2-Zellic-13DEC2023.pdf",
+      },
+      {
+        auditor: "Certora",
+        date: "December 2023",
+        severity: "Formal verification",
+        scope: "Endpoint V2 - EVM core contracts",
+        certificate: "EndpointV2-Certora-DEC2023.pdf",
+        reportUrl: "https://github.com/LayerZero-Labs/Audits/blob/main/audits/Endpoint%20V2%20-%20EVM/EndpointV2/EndpointV2-Certora-DEDC2023.pdf",
+      },
+      {
+        auditor: "OtterSec",
+        date: "December 14, 2023",
+        severity: "Critical: 0 · High: 0",
+        scope: "Endpoint V2 - EVM core contracts",
+        certificate: "EndpointV2-Ottersec-14DEC2023.pdf",
+        reportUrl: "https://github.com/LayerZero-Labs/Audits/blob/main/audits/Endpoint%20V2%20-%20EVM/EndpointV2/EndpointV2-Ottersec%2014DEC2023.pdf",
+      },
+      {
+        auditor: "Zellic",
+        date: "August 25, 2023",
+        severity: "Critical: 0 · High: 0 — DVN report aged 21 months",
+        scope: "Decentralized Verifier Network (DVN)",
+        certificate: "DVN-Zellic-25AUG2023.pdf",
+        reportUrl: "https://github.com/LayerZero-Labs/Audits/blob/main/audits/DVN/DVN-Zellic-25AUG2023.pdf",
+        flags: ["outdated"],
+      },
+      {
+        auditor: "Zellic",
+        date: "June 3, 2022",
+        severity: "Critical: 0 · High: 0 — V1 report outdated >48 months",
+        scope: "Endpoint V1 - EVM core contracts",
+        certificate: "EndpointV1-Zellic-03JUN2022.pdf",
+        reportUrl: "https://github.com/LayerZero-Labs/Audits/blob/main/audits/Endpoint%20V1%20-%20EVM/EndpointV1/EndpointV1-Zellic-03JUN2022.pdf",
+        flags: ["outdated"],
       },
     ],
   },
@@ -235,51 +319,56 @@ const baseProjects = [
     category: "Stablecoin",
     network: "ETH",
     reports: 9,
-    tvl: "$890M",
+    tvl: "$4.6B",
     verified: true,
-    score: 94,
+    score: 79,
+    scoreBreakdown: "Base 100 · 3 no-PDF links −12 · 4 reports aged 18-25 months −9",
     avatar: "mint",
     website: "https://ethena.fi",
     hash: "Official Ethena audit registry",
     summary:
-      "Ethena publishes a multi-phase audit program covering v1, v2, ENA staking, sENA, USDTB, Code4rena competition reports, and economic risk analysis.",
+      "Trust score 79/100 — all PDFs accessible; 3 entries link to the same docs index (no direct PDF). V1 audits from mid-2023 are 22-25 months old. Score: base 100 − 3 no-PDF (−12) − 4 reports aged >18 months (−9).",
     audits: [
       {
         auditor: "Ethena Labs",
         date: "2024",
-        severity: "Official audit registry",
+        severity: "Official audit registry — no direct PDF",
         scope: "All Ethena public audit reports",
         certificate: "Ethena Audits Registry",
         reportUrl: "https://docs.ethena.fi/resources/audits",
+        flags: ["no-pdf"],
       },
       {
         auditor: "Zellic",
         date: "July 5, 2023",
-        severity: "Critical: 0 · High: 0",
+        severity: "Critical: 0 · High: 0 — report aged 22 months",
         scope: "Ethena v1 contracts",
         certificate: "Ethena x Zellic Audit Report",
         reportUrl: "https://596495599-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FsBsPyff5ft3inFy9jyjt%2Fuploads%2FGZbd1DrrG3YmnTlJnTHa%2FEthena%20-%20Zellic%20Audit%20Report%20Draft.pdf?alt=media&token=2e65890c-6724-49b7-97f4-6d2223ba086e",
+        flags: ["outdated"],
       },
       {
         auditor: "Quantstamp",
         date: "October 18, 2023",
-        severity: "Critical: 0 · High: 0",
+        severity: "Critical: 0 · High: 0 — report aged 19 months",
         scope: "Ethena v1 contracts",
         certificate: "Ethena x Quantstamp Audit Report",
         reportUrl: "https://596495599-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FsBsPyff5ft3inFy9jyjt%2Fuploads%2F17Ucep7IYMBZ6mAHGLyw%2FEthena%20Final%20Report%20%281%29.pdf?alt=media&token=51a6a101-516e-4984-8360-14daf860a961",
+        flags: ["outdated"],
       },
       {
         auditor: "Spearbit",
         date: "October 18, 2023",
-        severity: "Critical: 0 · High: 0",
+        severity: "Critical: 0 · High: 0 — report aged 19 months",
         scope: "Ethena v1 contracts",
         certificate: "Spearbit x Ethena Audit Report",
         reportUrl: "https://596495599-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FsBsPyff5ft3inFy9jyjt%2Fuploads%2FsX7xO54StGnS6RlZM0Qa%2FSpearbit%20_Ethena_v2_Final_report-ethena__1_.pdf?alt=media&token=d0968065-7e4d-4661-b53f-a1d5181c30bd",
+        flags: ["outdated"],
       },
       {
         auditor: "Pashov Audit Group",
         date: "May 23, 2024",
-        severity: "Independent v2 audit",
+        severity: "Independent v2 audit · Critical: 0",
         scope: "Ethena v2 contracts",
         certificate: "Ethena v2 Audit",
         reportUrl: "https://596495599-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FsBsPyff5ft3inFy9jyjt%2Fuploads%2FJHbdthPqKCPoZFzrpryW%2Fv2-audit.pdf?alt=media&token=68bbdbae-4fcf-4e90-ad20-8c4d6a5a29a0",
@@ -295,26 +384,29 @@ const baseProjects = [
       {
         auditor: "Code4rena",
         date: "November 13, 2023",
-        severity: "Public audit contest · Critical: 0 · High: 0",
+        severity: "Public audit contest · Critical: 0 · High: 0 — aged 18 months",
         scope: "Ethena Labs public contest",
         certificate: "Ethena Labs Code4rena Audit",
         reportUrl: "https://code4rena.com/reports/2023-10-ethena",
+        flags: ["outdated"],
       },
       {
         auditor: "Chaos Labs",
         date: "2024",
-        severity: "Economic and financial risk audit",
+        severity: "Economic and financial risk audit — no direct PDF",
         scope: "Ethena system design and market risk",
         certificate: "Chaos Labs Ethena Risk Analysis",
         reportUrl: "https://docs.ethena.fi/resources/audits",
+        flags: ["no-pdf"],
       },
       {
         auditor: "Cyfrin",
         date: "October 31, 2024",
-        severity: "Critical: 0 · High: 0",
+        severity: "Critical: 0 · High: 0 — no direct PDF",
         scope: "USDTB contracts",
         certificate: "Ethena x Cyfrin USDTB Audit",
         reportUrl: "https://docs.ethena.fi/resources/audits",
+        flags: ["no-pdf"],
       },
     ],
   },
@@ -324,54 +416,60 @@ const baseProjects = [
     category: "Lending",
     network: "ETH/Base",
     reports: 5,
-    tvl: "$760M",
+    tvl: "$7.6B",
     verified: true,
-    score: 95,
+    score: 88,
+    scoreBreakdown: "Base 100 · 2 no-PDF links −8 · 3 reports aged 18-22 months −4",
     avatar: "blue",
     website: "https://morpho.org",
     hash: "Official Morpho audit folder",
     summary:
-      "Morpho Blue is an immutable lending primitive with public audits stored in the protocol GitHub repository and formal verification resources.",
+      "Trust score 88/100 — 3 of 5 PDFs directly accessible on GitHub. GitHub folder and Certora blog post lack direct PDFs. Oct–Nov 2023 reports are 18-22 months old. Score: base 100 − 2 no-PDF (−8) − 3 reports aged 18-22 months (−4).",
     audits: [
       {
         auditor: "Morpho Labs",
         date: "2024",
-        severity: "Official audits folder",
+        severity: "Official GitHub audits folder — no direct PDF",
         scope: "Morpho Blue public audit reports",
         certificate: "Morpho Blue Audits Registry",
         reportUrl: "https://github.com/morpho-org/morpho-blue/tree/main/audits",
+        flags: ["no-pdf"],
       },
       {
         auditor: "OpenZeppelin",
         date: "October 13, 2023",
-        severity: "Morpho Blue and Speed Jump IRM audit",
+        severity: "Morpho Blue and Speed Jump IRM audit — aged 19 months",
         scope: "Morpho Blue core and interest rate model",
-        certificate: "OpenZeppelin Morpho Blue Audit",
+        certificate: "2023-10-13-morpho-blue-and-speed-jump-irm-open-zeppelin.pdf",
         reportUrl: "https://github.com/morpho-org/morpho-blue/blob/main/audits/2023-10-13-morpho-blue-and-speed-jump-irm-open-zeppelin.pdf",
+        flags: ["outdated"],
       },
       {
         auditor: "Cantina",
         date: "November 13, 2023",
-        severity: "Managed security review",
+        severity: "Managed security review — aged 18 months",
         scope: "Morpho Blue protocol contracts",
-        certificate: "Cantina Managed Review",
+        certificate: "2023-11-13-morpho-blue-cantina-managed-review.pdf",
         reportUrl: "https://github.com/morpho-org/morpho-blue/blob/main/audits/2023-11-13-morpho-blue-cantina-managed-review.pdf",
+        flags: ["outdated"],
       },
       {
         auditor: "Cantina",
         date: "January 5, 2024",
-        severity: "Security competition report",
+        severity: "Security competition report — aged 16 months",
         scope: "Morpho Blue protocol contracts",
-        certificate: "Morpho Blue Cantina Competition",
+        certificate: "2024-01-05-morpho-blue-cantina-competition.pdf",
         reportUrl: "https://github.com/morpho-org/morpho-blue/blob/main/audits/2024-01-05-morpho-blue-cantina-competition.pdf",
+        flags: ["outdated"],
       },
       {
         auditor: "Certora",
         date: "December 2023",
-        severity: "Formal verification",
+        severity: "Formal verification — blog post, no direct PDF",
         scope: "Morpho Blue invariants and core properties",
         certificate: "Morpho Blue Formal Verification",
         reportUrl: "https://morpho.org/blog/formally-verifying-morpho-blue-with-certorav/",
+        flags: ["no-pdf"],
       },
     ],
   },
@@ -580,7 +678,7 @@ function renderStats() {
 
   certifiedCount.textContent = String(209 + certified);
   auditorCount.textContent = String(auditors);
-  securedTvl.textContent = "$4.2B";
+  securedTvl.textContent = "$33B";
 }
 
 function renderProjects() {
@@ -619,7 +717,7 @@ function renderProjects() {
               <strong>${project.score}/100</strong>
             </div>
             <div class="risk-bar" aria-label="Trust score ${project.score} out of 100">
-              <span style="width: ${project.score}%"></span>
+              <span style="width: ${project.score}%; background: ${scoreColor(project.score)}"></span>
             </div>
           </div>
           <div class="project-footer">
@@ -640,8 +738,21 @@ function renderProjects() {
   }
 }
 
+function scoreColor(score) {
+  if (score >= 80) return "var(--mint)";
+  if (score >= 55) return "var(--amber)";
+  return "var(--rose)";
+}
+
+function renderAuditFlags(flags) {
+  if (!flags || !flags.length) return "";
+  const labels = { broken: "Broken link", outdated: "Outdated", "no-pdf": "No direct PDF" };
+  return `<div class="audit-flags">${flags.map((f) => `<span class="audit-flag flag-${f}">${labels[f] ?? f}</span>`).join("")}</div>`;
+}
+
 function renderAuditDetail(project) {
   selectedProject = project;
+  const color = scoreColor(project.score);
   auditDetail.innerHTML = `
     <div class="audit-layout">
       <div class="audit-summary">
@@ -653,19 +764,21 @@ function renderAuditDetail(project) {
           <a href="${escapeHtml(project.website)}" target="_blank" rel="noreferrer">${escapeHtml(project.website)}</a>
           <span>Certificate hash</span>
           <code>${escapeHtml(compactHash(project.hash))}</code>
-          <span>Score</span>
-          <strong>${project.score}/100</strong>
+          <span>Trust score</span>
+          <strong style="color:${color}">${project.score}/100</strong>
+          ${project.scoreBreakdown ? `<span>Score breakdown</span><span style="color:var(--muted);font-size:0.88rem">${escapeHtml(project.scoreBreakdown)}</span>` : ""}
         </div>
       </div>
       <div class="audit-list">
         ${project.audits
           .map(
             (audit, index) => `
-              <article class="audit-card">
+              <article class="audit-card ${audit.flags && audit.flags.includes("broken") ? "audit-card--broken" : ""}">
                 <div class="audit-card-header">
                   <h3>${escapeHtml(audit.auditor)}</h3>
                   <span class="status-pill ${project.verified ? "" : "pending"}">${project.verified ? "Validated" : "Under review"}</span>
                 </div>
+                ${renderAuditFlags(audit.flags)}
                 <p><strong>Date:</strong> ${escapeHtml(audit.date)}</p>
                 <p><strong>Result:</strong> ${escapeHtml(audit.severity)}</p>
                 <p><strong>Scope:</strong> ${escapeHtml(audit.scope)}</p>
