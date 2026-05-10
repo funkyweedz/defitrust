@@ -765,9 +765,18 @@ function refreshState() {
   renderAuditDetail(updatedSelection);
 }
 
+const PROJECT_TEAM_NAMES = new Set([
+  "Aave Labs", "Uniswap Labs", "Curve Finance", "LayerZero Labs",
+  "Ethena Labs", "Morpho Labs", "Jupiter Labs",
+]);
+
 function renderStats() {
   const certified = projects.filter((project) => project.verified).length;
-  const auditors = new Set(projects.flatMap((project) => project.audits.map((audit) => audit.auditor))).size;
+  const auditors = new Set(
+    projects
+      .flatMap((project) => project.audits.map((audit) => audit.auditor))
+      .filter((name) => !PROJECT_TEAM_NAMES.has(name))
+  ).size;
 
   certifiedCount.textContent = String(certified);
   auditorCount.textContent = String(auditors);
