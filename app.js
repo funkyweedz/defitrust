@@ -473,6 +473,99 @@ const baseProjects = [
       },
     ],
   },
+  {
+    name: "Jupiter Exchange",
+    initials: "JX",
+    category: "DEX",
+    network: "Solana",
+    reports: 9,
+    tvl: "$1.9B",
+    verified: true,
+    score: 92,
+    scoreBreakdown: "Base 100 · 1 no-PDF docs link −4 · 2 undated reports −4 · 7 reports all accessible, 2024-2025",
+    avatar: "blue",
+    website: "https://jup.ag",
+    hash: "Official Jupiter audit documentation",
+    summary:
+      "Trust score 92/100 — 9 key audit PDFs all accessible on GitHub covering Swap v6, Perpetuals, and Lend. Most reports from 2024-2025, actively maintained. Score: base 100 − 1 no-PDF (−4) − 2 undated reports (−4).",
+    audits: [
+      {
+        auditor: "Jupiter Labs",
+        date: "2025",
+        severity: "Official audit documentation — no direct PDF",
+        scope: "All Jupiter public audit reports",
+        certificate: "Jupiter Audits Docs",
+        reportUrl: "https://developers.jup.ag/docs/resources/audits",
+        flags: ["no-pdf"],
+      },
+      {
+        auditor: "Offside Labs",
+        date: "October 2025",
+        severity: "Swap v6 security audit · Critical: 0",
+        scope: "Jupiter Swap v6",
+        certificate: "swap-v6-offside-october-2025.pdf",
+        reportUrl: "https://github.com/jup-ag/docs/blob/main/static/files/audits/swap-v6-offside-october-2025.pdf",
+      },
+      {
+        auditor: "Offside Labs",
+        date: "April 2024",
+        severity: "Swap v6 security audit",
+        scope: "Jupiter Swap v6",
+        certificate: "swap-v6-offside-april-2024.pdf",
+        reportUrl: "https://github.com/jup-ag/docs/blob/main/static/files/audits/swap-v6-offside-april-2024.pdf",
+      },
+      {
+        auditor: "Sec3",
+        date: "Undated",
+        severity: "Swap v3 security audit — no date provided",
+        scope: "Jupiter Swap v3",
+        certificate: "swap-v3-sec3.pdf",
+        reportUrl: "https://github.com/jup-ag/docs/blob/main/static/files/audits/swap-v3-sec3.pdf",
+        flags: ["outdated"],
+      },
+      {
+        auditor: "OtterSec",
+        date: "Undated",
+        severity: "Perpetuals security audit — no date provided",
+        scope: "Jupiter Perpetuals",
+        certificate: "perpetual-ottersec.pdf",
+        reportUrl: "https://github.com/jup-ag/docs/blob/main/static/files/audits/perpetual-ottersec.pdf",
+        flags: ["outdated"],
+      },
+      {
+        auditor: "Offside Labs",
+        date: "November 12–20, 2025",
+        severity: "Lend security audit report 2 · Critical: 0",
+        scope: "Jupiter Lend",
+        certificate: "lend-ottersec-2.pdf",
+        reportUrl: "https://github.com/jup-ag/docs/blob/main/static/files/audits/lend-ottersec-2.pdf",
+      },
+      {
+        auditor: "OtterSec",
+        date: "August 20 – November 1, 2025",
+        severity: "Lend main security audit · Critical: 0",
+        scope: "Jupiter Lend",
+        certificate: "lend-ottersec.pdf",
+        reportUrl: "https://github.com/jup-ag/docs/blob/main/static/files/audits/lend-ottersec.pdf",
+      },
+      {
+        auditor: "Offside Labs",
+        date: "October 13–19, 2025",
+        severity: "Lend Oracle & Flashloan audit",
+        scope: "Jupiter Lend — Oracle and Flashloan modules",
+        certificate: "lend-oracle-and-flashloan-offside.pdf",
+        reportUrl: "https://github.com/jup-ag/docs/blob/main/static/files/audits/lend-oracle-and-flashloan-offside.pdf",
+      },
+      {
+        auditor: "MixBytes",
+        date: "July 28 – October 14, 2025",
+        severity: "Lend Vault security audit",
+        scope: "Jupiter Lend Vault",
+        certificate: "lend-vault-mixbytes.pdf",
+        reportUrl: "https://github.com/jup-ag/docs/blob/main/static/files/audits/lend-vault-mixbytes.pdf",
+      },
+    ],
+  },
 ];
 
 const projectGrid = document.querySelector("#projectGrid");
@@ -678,7 +771,7 @@ function renderStats() {
 
   certifiedCount.textContent = String(209 + certified);
   auditorCount.textContent = String(auditors);
-  securedTvl.textContent = "$33B";
+  securedTvl.textContent = "$34.9B";
 }
 
 function renderProjects() {
