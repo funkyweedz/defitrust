@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page not found — DeFiTrust</title>
+    <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#13062a" />
+    <link rel="preload" href="/styles.css" as="style" />
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      .not-found {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 60vh;
+        text-align: center;
+        padding: 3rem 1.5rem;
+      }
+      .not-found-code {
+        font-size: clamp(5rem, 18vw, 10rem);
+        font-weight: 900;
+        line-height: 1;
+        background: linear-gradient(135deg, #FFB347, #E8841A);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin: 0;
+      }
+      .not-found h1 {
+        margin: 0.5rem 0 1rem;
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+      }
+      .not-found p {
+        color: var(--muted);
+        font-size: 1.1rem;
+        font-weight: 700;
+        max-width: 420px;
+        margin: 0 0 2rem;
+      }
+      .not-found-actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="/" aria-label="DeFiTrust home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="220 130 240 295" role="img" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="shieldGradHdr" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#FFB347"/>
+                  <stop offset="100%" stop-color="#E8841A"/>
+                </linearGradient>
+              </defs>
+              <path d="M 340 130 L 460 172 L 460 300 Q 460 380 340 420 Q 220 380 220 300 L 220 172 Z" fill="url(#shieldGradHdr)"/>
+              <path d="M 340 156 L 440 191 L 440 296 Q 440 363 340 396 Q 240 363 240 296 L 240 191 Z" fill="#2B0A45"/>
+              <path d="M 285 280 L 322 317 L 395 244" fill="none" stroke="#F39322" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span>DeFiTrust</span>
+        </a>
+        <nav class="header-actions" aria-label="Main navigation">
+          <a href="/#explorer">Explorer</a>
+          <a href="/#submit">Submit an audit</a>
+          <a href="/#review">Review</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="not-found">
+        <p class="not-found-code">404</p>
+        <h1>Page not found</h1>
+        <p>This page doesn't exist or has been moved. Head back to the registry to keep exploring audited protocols.</p>
+        <div class="not-found-actions">
+          <a class="button primary" href="/">Back to home</a>
+          <a class="button secondary" href="/#explorer">Browse projects</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <a class="brand brand-footer" href="/" aria-label="DeFiTrust home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="220 130 240 295" role="img" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="shieldGradFtr" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#FFB347"/>
+                  <stop offset="100%" stop-color="#E8841A"/>
+                </linearGradient>
+              </defs>
+              <path d="M 340 130 L 460 172 L 460 300 Q 460 380 340 420 Q 220 380 220 300 L 220 172 Z" fill="url(#shieldGradFtr)"/>
+              <path d="M 340 156 L 440 191 L 440 296 Q 440 363 340 396 Q 240 363 240 296 L 240 191 Z" fill="#2B0A45"/>
+              <path d="M 285 280 L 322 317 L 395 244" fill="none" stroke="#F39322" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span>DeFiTrust</span>
+        </a>
+        <p class="footer-copy">Public Web3 audit registry · Transparency at the core of DeFi</p>
+      </div>
+    </footer>
+  </body>
+</html>

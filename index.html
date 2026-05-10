@@ -59,13 +59,23 @@
     </script>
 
     <!-- Favicon & icons -->
-    <link rel="icon" href="./logo.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="./logo.svg" />
+    <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logo.svg" />
     <meta name="theme-color" content="#13062a" />
 
     <!-- Performance hints -->
     <link rel="preconnect" href="https://api.llama.fi" />
     <link rel="dns-prefetch" href="https://api.llama.fi" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+
+    <!-- Google Analytics GA4 — remplace G-XXXXXXXXXX par ton Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
 
     <!-- ItemList structured data (audited projects) -->
     <script type="application/ld+json">
@@ -90,7 +100,9 @@
     </script>
 
     <meta name="google-site-verification" content="4b0e4260d701ec38" />
-    <link rel="stylesheet" href="./styles.css" />
+    <!-- Preload CSS to reduce render-blocking -->
+    <link rel="preload" href="/styles.css" as="style" />
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <header class="site-header">
@@ -297,7 +309,7 @@
       </section>
     </main>
 
-    <script src="./app.js"></script>
+    <script src="/app.js" defer></script>
     <noscript>
       <style>.project-grid,.review-board{display:none}</style>
       <section style="padding:2rem;text-align:center">
