@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://defitrust.xyz/sitemap.xml
+Sitemap: https://defitrust.vercel.app/sitemap.xml
