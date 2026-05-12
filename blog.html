@@ -140,13 +140,41 @@
           </span>
           <span>DeFiTrust</span>
         </a>
-        <nav class="header-actions" aria-label="Main navigation">
+        <nav class="header-actions" id="mainNav" aria-label="Main navigation">
           <a href="./index.html#explorer">Explorer</a>
           <a href="./index.html#submit">Submit an audit</a>
           <a href="./index.html#review">Review</a>
         </nav>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mainNav">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
       </div>
     </header>
+    <script>
+      (function() {
+        var toggle = document.getElementById('navToggle');
+        var header = toggle && toggle.closest('.site-header');
+        if (!toggle) return;
+        toggle.addEventListener('click', function() {
+          var open = header.classList.toggle('nav-open');
+          toggle.setAttribute('aria-expanded', open);
+        });
+        document.addEventListener('click', function(e) {
+          if (header && !header.contains(e.target)) {
+            header.classList.remove('nav-open');
+            toggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+        document.querySelectorAll('#mainNav a').forEach(function(a) {
+          a.addEventListener('click', function() {
+            header.classList.remove('nav-open');
+            toggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      })();
+    </script>
 
     <div class="announce-bar">
       <span>🌱 DeFiTrust is raising funds on Giveth to accelerate the development of open DeFi security infrastructure —</span>
