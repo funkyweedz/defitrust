@@ -691,6 +691,35 @@ const baseProjects = [
       },
     ],
   },
+  {
+    name: "Phoenix Trade",
+    sortDate: "2024-01-01",
+    panelAuditor: "OtterSec · Critical: 0",
+    initials: "PT",
+    category: "DEX",
+    network: "Solana",
+    reports: 1,
+    tvl: "$1.7M",
+    verified: true,
+    score: 88,
+    scoreBreakdown: "Base 100 · 1 audit report via temporary Notion link −12 · host on IPFS or GitHub for a higher score",
+    avatar: "rose",
+    website: "https://ellipsis.trade",
+    hash: "ellipsis_phoenix_audit_final.pdf — OtterSec",
+    summary:
+      "Trust score 88/100 — 1 audit by OtterSec covering the Phoenix on-chain CLOB. No critical issues found. The certificate is currently hosted via a temporary Notion link — uploading to IPFS or GitHub would raise the score to 100.",
+    audits: [
+      {
+        auditor: "OtterSec",
+        date: "2024",
+        severity: "Phoenix CLOB security audit · Critical: 0",
+        scope: "Phoenix on-chain central limit order book (Solana)",
+        certificate: "ellipsis_phoenix_audit_final.pdf",
+        reportUrl: "https://file.notion.so/f/f/97ab6450-64d1-4350-a5cf-a0c0c607f5c4/d490abb1-acff-4638-973f-203664bccf1c/ellipsis_phoenix_audit_final.pdf?table=block&id=9888c291-939f-4def-bbb3-77a165bd9230&spaceId=97ab6450-64d1-4350-a5cf-a0c0c607f5c4&expirationTimestamp=1778627597131&signature=2Ftvamv4CmJ07ujrBmpC5UY8bkdzpc-uLHkfBhN65-s&downloadName=ellipsis_phoenix_audit_final.pdf",
+        flags: ["no-pdf"],
+      },
+    ],
+  },
 ];
 
 const projectGrid = document.querySelector("#projectGrid");
@@ -904,7 +933,7 @@ function refreshState() {
 
 const PROJECT_TEAM_NAMES = new Set([
   "Aave Labs", "Uniswap Labs", "Curve Finance", "LayerZero Labs",
-  "Ethena Labs", "Morpho Labs", "Jupiter Labs", "Meteora",
+  "Ethena Labs", "Morpho Labs", "Jupiter Labs", "Meteora", "Phoenix Trade",
 ]);
 
 function renderStats() {
