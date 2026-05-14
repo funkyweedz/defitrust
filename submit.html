@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="robots" content="index, follow" />
+    <title>Submit an audit certificate — DeFiTrust</title>
+    <meta name="description" content="Submit your DeFi protocol's audit certificate to the DeFiTrust public registry. Reviewed within 48 hours — free, open, and transparent." />
+    <link rel="canonical" href="https://defitrust.vercel.app/submit.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://defitrust.vercel.app/submit.html" />
+    <meta property="og:title" content="Submit an audit certificate — DeFiTrust" />
+    <meta property="og:description" content="Publish your DeFi protocol's audit certificate to the open DeFiTrust registry. Reviewed within 48 hours." />
+    <meta property="og:image" content="https://defitrust.vercel.app/logo.svg" />
+    <meta property="og:site_name" content="DeFiTrust" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@TrustDeFii" />
+    <meta name="twitter:title" content="Submit an audit certificate — DeFiTrust" />
+    <meta name="twitter:description" content="Publish your DeFi protocol's audit certificate to the open DeFiTrust registry. Reviewed within 48 hours." />
+    <meta name="twitter:image" content="https://defitrust.vercel.app/logo.svg" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XN7J2KHP91"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XN7J2KHP91');
+    </script>
+
+    <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logo.svg" />
+    <meta name="theme-color" content="#13062a" />
+    <link rel="preload" href="/styles.css?v=3" as="style" />
+    <link rel="stylesheet" href="/styles.css?v=3" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header-inner">
+        <a class="brand" href="/" aria-label="DeFiTrust home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="220 130 240 295" role="img" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="shieldGradHdr" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#FFB347"/>
+                  <stop offset="100%" stop-color="#E8841A"/>
+                </linearGradient>
+              </defs>
+              <path d="M 340 130 L 460 172 L 460 300 Q 460 380 340 420 Q 220 380 220 300 L 220 172 Z" fill="url(#shieldGradHdr)"/>
+              <path d="M 340 156 L 440 191 L 440 296 Q 440 363 340 396 Q 240 363 240 296 L 240 191 Z" fill="#2B0A45"/>
+              <path d="M 285 280 L 322 317 L 395 244" fill="none" stroke="#F39322" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span>DeFiTrust</span>
+        </a>
+        <nav class="header-actions" id="mainNav" aria-label="Main navigation">
+          <a href="/#explorer">Explorer</a>
+          <a href="/submit.html" aria-current="page">Submit an audit</a>
+          <a href="/review.html">Review</a>
+        </nav>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mainNav">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+      </div>
+    </header>
+    <script>
+      (function() {
+        var toggle = document.getElementById('navToggle');
+        var header = toggle && toggle.closest('.site-header');
+        if (!toggle) return;
+        toggle.addEventListener('click', function() {
+          var open = header.classList.toggle('nav-open');
+          toggle.setAttribute('aria-expanded', open);
+        });
+        document.addEventListener('click', function(e) {
+          if (header && !header.contains(e.target)) {
+            header.classList.remove('nav-open');
+            toggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+        document.querySelectorAll('#mainNav a').forEach(function(a) {
+          a.addEventListener('click', function() {
+            header.classList.remove('nav-open');
+            toggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      })();
+    </script>
+
+    <div class="announce-bar">
+      <span>🌱 DeFiTrust is raising funds on Giveth to accelerate the development of open DeFi security infrastructure —</span>
+      <a href="https://giveth.io/project/defi-trust" target="_blank" rel="noreferrer">support our mission</a>
+    </div>
+
+    <main>
+      <section class="submit-section" id="submit" aria-labelledby="submit-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">For projects</p>
+            <h1 id="submit-title">Submit an audit certificate</h1>
+          </div>
+          <span class="review-badge">Reviewed within 48h</span>
+        </div>
+
+        <form class="submit-form" id="auditForm">
+          <div class="form-grid">
+            <label>
+              Project name
+              <input name="project" required placeholder="E.g. Aave V3" />
+            </label>
+            <label>
+              Official website
+              <input name="website" type="url" required placeholder="https://..." />
+            </label>
+            <label>
+              Auditor
+              <input name="auditor" required placeholder="E.g. Certora" />
+            </label>
+            <label>
+              Category
+              <select name="category" required>
+                <option value="">Choose</option>
+                <option>Lending</option>
+                <option>DEX</option>
+                <option>Bridge</option>
+                <option>Stablecoin</option>
+              </select>
+            </label>
+            <label>
+              Network
+              <select name="network" required>
+                <option value="">Choose</option>
+                <option>Ethereum</option>
+                <option>Arbitrum</option>
+                <option>Base</option>
+                <option>Polygon</option>
+                <option>Multi-chain</option>
+              </select>
+            </label>
+            <label>
+              Estimated TVL
+              <input name="tvl" placeholder="E.g. $120M" />
+            </label>
+            <label>
+              Critical issues
+              <input name="critical" type="number" min="0" value="0" />
+            </label>
+            <label>
+              Open high-severity issues
+              <input name="high" type="number" min="0" value="0" />
+            </label>
+            <label>
+              Public hash
+              <input name="hash" placeholder="IPFS, Arweave, or SHA-256 hash" />
+            </label>
+          </div>
+
+          <label class="upload-box" for="certificateFile">
+            <input id="certificateFile" name="certificate" type="file" accept=".pdf,.png,.jpg,.jpeg" required />
+            <span>Drop the PDF or image certificate</span>
+            <small>PDF, PNG, or JPG · public hash recommended</small>
+            <strong id="fileStatus">No file selected</strong>
+          </label>
+
+          <label>
+            Audit summary
+            <textarea name="summary" rows="4" placeholder="Scope, date, severity level, fixes applied..."></textarea>
+          </label>
+
+          <button class="button primary" type="submit">Send for verification</button>
+          <p class="form-status" id="formStatus" role="status"></p>
+        </form>
+        <p style="margin-top:1.25rem;font-size:0.92rem;color:var(--soft);font-weight:700;">
+          Already listed? <a href="/#explorer" style="color:var(--mint);text-decoration:underline;text-underline-offset:3px;">Find your project in the registry</a>
+          &nbsp;·&nbsp;
+          <a href="/review.html" style="color:var(--mint);text-decoration:underline;text-underline-offset:3px;">Check your submission status</a>
+        </p>
+      </section>
+    </main>
+
+    <script src="/app.js" defer></script>
+
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <a class="brand brand-footer" href="/" aria-label="DeFiTrust home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="220 130 240 295" role="img" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="shieldGradFtr" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#FFB347"/>
+                  <stop offset="100%" stop-color="#E8841A"/>
+                </linearGradient>
+              </defs>
+              <path d="M 340 130 L 460 172 L 460 300 Q 460 380 340 420 Q 220 380 220 300 L 220 172 Z" fill="url(#shieldGradFtr)"/>
+              <path d="M 340 156 L 440 191 L 440 296 Q 440 363 340 396 Q 240 363 240 296 L 240 191 Z" fill="#2B0A45"/>
+              <path d="M 285 280 L 322 317 L 395 244" fill="none" stroke="#F39322" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span>DeFiTrust</span>
+        </a>
+        <p class="footer-copy">Public Web3 audit registry · Transparency at the core of DeFi</p>
+        <nav class="footer-nav" aria-label="Social networks">
+          <a href="/blog.html" aria-label="Blog">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Zm-7 14H7v-2h5v2Zm5-4H7v-2h10v2Zm0-4H7V7h10v2Z"/></svg>
+            <span>Blog</span>
+          </a>
+          <a href="https://x.com/TrustDeFii" target="_blank" rel="noreferrer" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <span>X (Twitter)</span>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61589206361091" target="_blank" rel="noreferrer" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+            <span>Facebook</span>
+          </a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <meta name="robots" content="noindex, nofollow" />
-    <title>Page not found — DeFiTrust</title>
+    <title>Verification queue — DeFiTrust</title>
+    <meta name="description" content="DeFiTrust operations dashboard — review, approve, and manage submitted audit certificates." />
+    <link rel="canonical" href="https://defitrust.vercel.app/review.html" />
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XN7J2KHP91"></script>
     <script>
@@ -13,48 +17,12 @@
       gtag('js', new Date());
       gtag('config', 'G-XN7J2KHP91');
     </script>
+
     <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/logo.svg" />
     <meta name="theme-color" content="#13062a" />
     <link rel="preload" href="/styles.css?v=3" as="style" />
     <link rel="stylesheet" href="/styles.css?v=3" />
-    <style>
-      .not-found {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 60vh;
-        text-align: center;
-        padding: 3rem 1.5rem;
-      }
-      .not-found-code {
-        font-size: clamp(5rem, 18vw, 10rem);
-        font-weight: 900;
-        line-height: 1;
-        background: linear-gradient(135deg, #FFB347, #E8841A);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin: 0;
-      }
-      .not-found h1 {
-        margin: 0.5rem 0 1rem;
-        font-size: clamp(1.5rem, 3vw, 2.2rem);
-      }
-      .not-found p {
-        color: var(--muted);
-        font-size: 1.1rem;
-        font-weight: 700;
-        max-width: 420px;
-        margin: 0 0 2rem;
-      }
-      .not-found-actions {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-    </style>
   </head>
   <body>
     <header class="site-header">
@@ -78,7 +46,7 @@
         <nav class="header-actions" id="mainNav" aria-label="Main navigation">
           <a href="/#explorer">Explorer</a>
           <a href="/submit.html">Submit an audit</a>
-          <a href="/review.html">Review</a>
+          <a href="/review.html" aria-current="page">Review</a>
         </nav>
         <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mainNav">
           <span class="nav-toggle-bar"></span>
@@ -112,16 +80,29 @@
     </script>
 
     <main>
-      <div class="not-found">
-        <p class="not-found-code">404</p>
-        <h1>Page not found</h1>
-        <p>This page doesn't exist or has been moved. Head back to the registry to keep exploring audited protocols.</p>
-        <div class="not-found-actions">
-          <a class="button primary" href="/">Back to home</a>
-          <a class="button secondary" href="/#explorer">Browse projects</a>
+      <section class="review-section" id="review" aria-labelledby="review-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Operations</p>
+            <h1 id="review-title">Verification queue</h1>
+          </div>
+          <div class="review-tools">
+            <button class="button secondary compact" id="exportData" type="button">Export data</button>
+            <label class="button secondary compact import-trigger" for="importData">Import data</label>
+            <input id="importData" class="hidden-input" type="file" accept="application/json,.json" />
+            <button class="button secondary compact" id="resetDemo" type="button">Reset demo</button>
+          </div>
         </div>
-      </div>
+        <div class="review-board" id="reviewBoard" aria-live="polite"></div>
+        <p style="margin-top:1.5rem;font-size:0.92rem;color:var(--soft);font-weight:700;text-align:center;">
+          <a href="/submit.html" style="color:var(--mint);text-decoration:underline;text-underline-offset:3px;">Submit a new certificate</a>
+          &nbsp;·&nbsp;
+          <a href="/#explorer" style="color:var(--mint);text-decoration:underline;text-underline-offset:3px;">Browse the registry</a>
+        </p>
+      </section>
     </main>
+
+    <script src="/app.js" defer></script>
 
     <footer class="site-footer">
       <div class="site-footer-inner">
@@ -142,6 +123,20 @@
           <span>DeFiTrust</span>
         </a>
         <p class="footer-copy">Public Web3 audit registry · Transparency at the core of DeFi</p>
+        <nav class="footer-nav" aria-label="Social networks">
+          <a href="/blog.html" aria-label="Blog">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2Zm-7 14H7v-2h5v2Zm5-4H7v-2h10v2Zm0-4H7V7h10v2Z"/></svg>
+            <span>Blog</span>
+          </a>
+          <a href="https://x.com/TrustDeFii" target="_blank" rel="noreferrer" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.91-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <span>X (Twitter)</span>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61589206361091" target="_blank" rel="noreferrer" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+            <span>Facebook</span>
+          </a>
+        </nav>
       </div>
     </footer>
   </body>

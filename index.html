@@ -127,8 +127,8 @@
         </a>
         <nav class="header-actions" id="mainNav" aria-label="Main navigation">
           <a href="#explorer">Explorer</a>
-          <a href="#submit">Submit an audit</a>
-          <a href="#review">Review</a>
+          <a href="/submit.html">Submit an audit</a>
+          <a href="/review.html">Review</a>
         </nav>
         <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mainNav">
           <span class="nav-toggle-bar"></span>
@@ -178,11 +178,11 @@
           <p style="margin-top:0.75rem;font-size:0.95rem;color:var(--soft);font-weight:700;">
             <a href="/blog.html" style="color:var(--mint);text-decoration:underline;text-underline-offset:3px;">Read our latest platform updates</a>
             &nbsp;·&nbsp;
-            <a href="#review" style="color:var(--mint);text-decoration:underline;text-underline-offset:3px;">Track verification progress</a>
+            <a href="/review.html" style="color:var(--mint);text-decoration:underline;text-underline-offset:3px;">Track verification progress</a>
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#explorer">Explore projects</a>
-            <a class="button secondary" href="#submit">Publish a certificate</a>
+            <a class="button secondary" href="/submit.html">Publish a certificate</a>
           </div>
         </div>
         <div class="trust-panel" aria-label="DeFiTrust trust summary">
@@ -248,104 +248,18 @@
         </div>
       </section>
 
-      <section class="submit-section" id="submit" aria-labelledby="submit-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">For projects</p>
-            <h2 id="submit-title">Submit an audit certificate</h2>
-          </div>
-          <span class="review-badge">Reviewed within 48h</span>
-        </div>
-
-        <form class="submit-form" id="auditForm">
-          <div class="form-grid">
-            <label>
-              Project name
-              <input name="project" required placeholder="E.g. Aave V3" />
-            </label>
-            <label>
-              Official website
-              <input name="website" type="url" required placeholder="https://..." />
-            </label>
-            <label>
-              Auditor
-              <input name="auditor" required placeholder="E.g. Certora" />
-            </label>
-            <label>
-              Category
-              <select name="category" required>
-                <option value="">Choose</option>
-                <option>Lending</option>
-                <option>DEX</option>
-                <option>Bridge</option>
-                <option>Stablecoin</option>
-              </select>
-            </label>
-            <label>
-              Network
-              <select name="network" required>
-                <option value="">Choose</option>
-                <option>Ethereum</option>
-                <option>Arbitrum</option>
-                <option>Base</option>
-                <option>Polygon</option>
-                <option>Multi-chain</option>
-              </select>
-            </label>
-            <label>
-              Estimated TVL
-              <input name="tvl" placeholder="E.g. $120M" />
-            </label>
-            <label>
-              Critical issues
-              <input name="critical" type="number" min="0" value="0" />
-            </label>
-            <label>
-              Open high-severity issues
-              <input name="high" type="number" min="0" value="0" />
-            </label>
-            <label>
-              Public hash
-              <input name="hash" placeholder="IPFS, Arweave, or SHA-256 hash" />
-            </label>
-          </div>
-
-          <label class="upload-box" for="certificateFile">
-            <input id="certificateFile" name="certificate" type="file" accept=".pdf,.png,.jpg,.jpeg" required />
-            <span>Drop the PDF or image certificate</span>
-            <small>PDF, PNG, or JPG · public hash recommended</small>
-            <strong id="fileStatus">No file selected</strong>
-          </label>
-
-          <label>
-            Audit summary
-            <textarea name="summary" rows="4" placeholder="Scope, date, severity level, fixes applied..."></textarea>
-          </label>
-
-          <button class="button primary" type="submit">Send for verification</button>
-          <p class="form-status" id="formStatus" role="status"></p>
-        </form>
-        <p style="margin-top:1.25rem;font-size:0.92rem;color:var(--soft);font-weight:700;">
-          Already listed? <a href="#explorer" style="color:var(--mint);text-decoration:underline;text-underline-offset:3px;">Find your project in the registry</a>
-          &nbsp;·&nbsp;
-          <a href="#review" style="color:var(--mint);text-decoration:underline;text-underline-offset:3px;">Check your submission status</a>
-        </p>
-      </section>
-
-      <section class="review-section" id="review" aria-labelledby="review-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Operations</p>
-            <h2 id="review-title">Verification queue</h2>
-          </div>
-          <div class="review-tools">
-            <button class="button secondary compact" id="exportData" type="button">Export data</button>
-            <label class="button secondary compact import-trigger" for="importData">Import data</label>
-            <input id="importData" class="hidden-input" type="file" accept="application/json,.json" />
-            <button class="button secondary compact" id="resetDemo" type="button">Reset demo</button>
+      <section class="submit-section" id="submit" aria-labelledby="submit-cta-title" style="text-align:center;">
+        <div style="max-width:600px;margin:0 auto;">
+          <p class="eyebrow">For projects</p>
+          <h2 id="submit-cta-title">Submit an audit certificate</h2>
+          <p style="color:var(--muted);font-size:1.1rem;font-weight:700;margin:0.75rem 0 2rem;">
+            Is your protocol audited? Publish your certificate to the DeFiTrust public registry — reviewed within 48 hours.
+          </p>
+          <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+            <a class="button primary" href="/submit.html">Submit your audit</a>
+            <a class="button secondary" href="/review.html">View verification queue</a>
           </div>
         </div>
-        <div class="review-board" id="reviewBoard" aria-live="polite"></div>
       </section>
     </main>
 

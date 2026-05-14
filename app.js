@@ -922,13 +922,14 @@ function renderLatestAttestation() {
 
 function refreshState() {
   projects = buildProjectList();
-  renderStats();
-  renderProjects();
-  renderLatestAttestation();
-  renderReviewBoard();
-
-  const updatedSelection = projects.find((project) => project.name === selectedProject?.name) || projects[1];
-  renderAuditDetail(updatedSelection);
+  if (certifiedCount) renderStats();
+  if (projectGrid) {
+    renderProjects();
+    const updatedSelection = projects.find((project) => project.name === selectedProject?.name) || projects[1];
+    renderAuditDetail(updatedSelection);
+  }
+  if (document.querySelector("#latestProject")) renderLatestAttestation();
+  if (reviewBoard) renderReviewBoard();
 }
 
 const PROJECT_TEAM_NAMES = new Set([
@@ -1113,48 +1114,56 @@ function renderReviewBoard() {
     .join("");
 }
 
-projectGrid.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-project]");
-  if (!button) return;
+if (projectGrid) {
+  projectGrid.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-project]");
+    if (!button) return;
 
-  const project = projects.find((item) => item.name === decodeURIComponent(button.dataset.project));
-  renderAuditDetail(project);
-  auditDetail.scrollIntoView({ behavior: "smooth", block: "start" });
-});
+    const project = projects.find((item) => item.name === decodeURIComponent(button.dataset.project));
+    renderAuditDetail(project);
+    auditDetail.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+}
 
-auditDetail.addEventListener("click", (event) => {
-  const viewButton = event.target.closest("[data-view-certificate]");
-  const downloadButton = event.target.closest("[data-download-certificate]");
-  const actionId = viewButton?.dataset.viewCertificate || downloadButton?.dataset.downloadCertificate;
-  if (!actionId) return;
+if (auditDetail) {
+  auditDetail.addEventListener("click", (event) => {
+    const viewButton = event.target.closest("[data-view-certificate]");
+    const downloadButton = event.target.closest("[data-download-certificate]");
+    const actionId = viewButton?.dataset.viewCertificate || downloadButton?.dataset.downloadCertificate;
+    if (!actionId) return;
 
-  const [projectName, index] = actionId.split("::");
-  const project = projects.find((item) => item.name === decodeURIComponent(projectName));
-  const audit = project?.audits[Number(index)];
-  if (!audit?.certificateData && !audit?.reportUrl) return;
+    const [projectName, index] = actionId.split("::");
+    const project = projects.find((item) => item.name === decodeURIComponent(projectName));
+    const audit = project?.audits[Number(index)];
+    if (!audit?.certificateData && !audit?.reportUrl) return;
 
-  if (viewButton && audit.reportUrl) window.open(audit.reportUrl, "_blank", "noopener,noreferrer");
-  if (viewButton && audit.certificateData) openCertificate(audit.certificateData);
-  if (downloadButton) makeDownload(audit.certificate, audit.certificateData);
-});
+    if (viewButton && audit.reportUrl) window.open(audit.reportUrl, "_blank", "noopener,noreferrer");
+    if (viewButton && audit.certificateData) openCertificate(audit.certificateData);
+    if (downloadButton) makeDownload(audit.certificate, audit.certificateData);
+  });
+}
 
-projectSearch.addEventListener("input", renderProjects);
-categoryFilter.addEventListener("change", renderProjects);
+if (projectSearch) projectSearch.addEventListener("input", renderProjects);
+if (categoryFilter) categoryFilter.addEventListener("change", renderProjects);
 
-verifiedToggle.addEventListener("click", () => {
-  onlyVerified = !onlyVerified;
-  verifiedToggle.setAttribute("aria-pressed", String(onlyVerified));
-  verifiedToggle.textContent = onlyVerified ? "Certified only" : "All statuses";
-  renderProjects();
-});
+if (verifiedToggle) {
+  verifiedToggle.addEventListener("click", () => {
+    onlyVerified = !onlyVerified;
+    verifiedToggle.setAttribute("aria-pressed", String(onlyVerified));
+    verifiedToggle.textContent = onlyVerified ? "Certified only" : "All statuses";
+    renderProjects();
+  });
+}
 
-certificateFile.addEventListener("change", () => {
-  const file = certificateFile.files[0];
-  fileStatus.textContent = file ? `${file.name} · ${formatBytes(file.size)}` : "No file selected";
-  fileStatus.classList.toggle("file-error", Boolean(file && file.size > MAX_CERTIFICATE_SIZE));
-});
+if (certificateFile) {
+  certificateFile.addEventListener("change", () => {
+    const file = certificateFile.files[0];
+    fileStatus.textContent = file ? `${file.name} · ${formatBytes(file.size)}` : "No file selected";
+    fileStatus.classList.toggle("file-error", Boolean(file && file.size > MAX_CERTIFICATE_SIZE));
+  });
+}
 
-auditForm.addEventListener("submit", async (event) => {
+if (auditForm) auditForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const data = new FormData(auditForm);
   const file = data.get("certificate");
@@ -1198,89 +1207,96 @@ auditForm.addEventListener("submit", async (event) => {
 
   submissions = [submission, ...submissions];
   saveSubmissions();
-  formStatus.textContent = `${projectName} is now in the DeFiTrust verification queue.`;
+  formStatus.textContent = `${projectName} is now in the DeFiTrust verification queue. Redirecting…`;
   auditForm.reset();
   fileStatus.textContent = "No file selected";
   fileStatus.classList.remove("file-error");
   refreshState();
-  document.querySelector("#review").scrollIntoView({ behavior: "smooth", block: "start" });
+  setTimeout(() => { window.location.href = "/review.html"; }, 1500);
 });
 
-reviewBoard.addEventListener("click", (event) => {
-  const approveButton = event.target.closest("[data-approve]");
-  const rejectButton = event.target.closest("[data-reject]");
-  const viewButton = event.target.closest("[data-view-submission]");
-  const downloadButton = event.target.closest("[data-download-submission]");
+if (reviewBoard) {
+  reviewBoard.addEventListener("click", (event) => {
+    const approveButton = event.target.closest("[data-approve]");
+    const rejectButton = event.target.closest("[data-reject]");
+    const viewButton = event.target.closest("[data-view-submission]");
+    const downloadButton = event.target.closest("[data-download-submission]");
 
-  if (viewButton || downloadButton) {
-    const id = viewButton?.dataset.viewSubmission || downloadButton?.dataset.downloadSubmission;
-    const submission = submissions.find((item) => item.id === id);
-    if (!submission?.certificateData) return;
+    if (viewButton || downloadButton) {
+      const id = viewButton?.dataset.viewSubmission || downloadButton?.dataset.downloadSubmission;
+      const submission = submissions.find((item) => item.id === id);
+      if (!submission?.certificateData) return;
 
-    if (viewButton) openCertificate(submission.certificateData);
-    if (downloadButton) makeDownload(submission.fileName, submission.certificateData);
-    return;
-  }
-
-  if (approveButton) {
-    submissions = submissions.map((submission) =>
-      submission.id === approveButton.dataset.approve
-        ? {
-            ...submission,
-            status: "approved",
-            reviewedAt: new Date().toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" }),
-          }
-        : submission
-    );
-  }
-
-  if (rejectButton) {
-    submissions = submissions.filter((submission) => submission.id !== rejectButton.dataset.reject);
-  }
-
-  saveSubmissions();
-  refreshState();
-});
-
-resetDemo.addEventListener("click", () => {
-  submissions = [];
-  saveSubmissions();
-  refreshState();
-  formStatus.textContent = "Demo reset.";
-});
-
-exportData.addEventListener("click", () => {
-  const payload = {
-    app: "DeFiTrust",
-    version: 1,
-    exportedAt: new Date().toISOString(),
-    submissions,
-  };
-  makeJsonDownload("defitrust-data.json", payload);
-});
-
-importData.addEventListener("change", () => {
-  const file = importData.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.addEventListener("load", () => {
-    try {
-      const payload = JSON.parse(reader.result);
-      const imported = Array.isArray(payload) ? payload : payload.submissions;
-      if (!Array.isArray(imported)) throw new Error("Invalid DeFiTrust data file.");
-
-      submissions = imported.filter((item) => item.id && item.project && item.auditor && item.fileName);
-      saveSubmissions();
-      refreshState();
-      formStatus.textContent = `${submissions.length} submissions imported.`;
-    } catch (error) {
-      formStatus.textContent = error.message;
-    } finally {
-      importData.value = "";
+      if (viewButton) openCertificate(submission.certificateData);
+      if (downloadButton) makeDownload(submission.fileName, submission.certificateData);
+      return;
     }
+
+    if (approveButton) {
+      submissions = submissions.map((submission) =>
+        submission.id === approveButton.dataset.approve
+          ? {
+              ...submission,
+              status: "approved",
+              reviewedAt: new Date().toLocaleDateString("en-US", { day: "numeric", month: "long", year: "numeric" }),
+            }
+          : submission
+      );
+    }
+
+    if (rejectButton) {
+      submissions = submissions.filter((submission) => submission.id !== rejectButton.dataset.reject);
+    }
+
+    saveSubmissions();
+    refreshState();
   });
-  reader.readAsText(file);
-});
+}
+
+if (resetDemo) {
+  resetDemo.addEventListener("click", () => {
+    submissions = [];
+    saveSubmissions();
+    refreshState();
+  });
+}
+
+if (exportData) {
+  exportData.addEventListener("click", () => {
+    const payload = {
+      app: "DeFiTrust",
+      version: 1,
+      exportedAt: new Date().toISOString(),
+      submissions,
+    };
+    makeJsonDownload("defitrust-data.json", payload);
+  });
+}
+
+if (importData) {
+  importData.addEventListener("change", () => {
+    const file = importData.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      try {
+        const payload = JSON.parse(reader.result);
+        const imported = Array.isArray(payload) ? payload : payload.submissions;
+        if (!Array.isArray(imported)) throw new Error("Invalid DeFiTrust data file.");
+
+        submissions = imported.filter((item) => item.id && item.project && item.auditor && item.fileName);
+        saveSubmissions();
+        refreshState();
+      } catch (error) {
+        const status = document.querySelector("#formStatus");
+        if (status) status.textContent = error.message;
+      } finally {
+        importData.value = "";
+      }
+    });
+    reader.readAsText(file);
+  });
+}
 
 refreshState();
