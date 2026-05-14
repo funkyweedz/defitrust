@@ -7,6 +7,7 @@ const baseProjects = [
     sortDate: "2025-01-22",
     panelAuditor: "Sherlock · Critical: 0",
     initials: "AV",
+    logo: "https://icons.llamao.fi/icons/protocols/aave-v3?w=128&h=128",
     category: "Lending",
     network: "ETH",
     reports: 9,
@@ -105,6 +106,7 @@ const baseProjects = [
     sortDate: "2024-08-30",
     panelAuditor: "OpenZeppelin · Critical: 1 resolved",
     initials: "UV",
+    logo: "https://icons.llamao.fi/icons/protocols/uniswap-v4?w=128&h=128",
     category: "DEX",
     network: "ETH/ARB",
     reports: 8,
@@ -190,6 +192,7 @@ const baseProjects = [
     sortDate: "2025-01-01",
     panelAuditor: "ChainSecurity · Fast Bridge",
     initials: "CF",
+    logo: "https://icons.llamao.fi/icons/protocols/curve?w=128&h=128",
     category: "DEX",
     network: "Multi",
     reports: 5,
@@ -255,6 +258,7 @@ const baseProjects = [
     sortDate: "2023-12-14",
     panelAuditor: "OtterSec · Critical: 0",
     initials: "LZ",
+    logo: "https://icons.llamao.fi/icons/protocols/layerzero?w=128&h=128",
     category: "Bridge",
     network: "Multi-chain",
     reports: 6,
@@ -326,6 +330,7 @@ const baseProjects = [
     sortDate: "2024-10-31",
     panelAuditor: "Cyfrin · Critical: 0",
     initials: "EN",
+    logo: "https://icons.llamao.fi/icons/protocols/ethena?w=128&h=128",
     category: "Stablecoin",
     network: "ETH",
     reports: 9,
@@ -425,6 +430,7 @@ const baseProjects = [
     sortDate: "2024-01-05",
     panelAuditor: "Cantina · Critical: 0",
     initials: "MB",
+    logo: "https://icons.llamao.fi/icons/protocols/morpho-blue?w=128&h=128",
     category: "Lending",
     network: "ETH/Base",
     reports: 5,
@@ -490,6 +496,7 @@ const baseProjects = [
     sortDate: "2025-11-20",
     panelAuditor: "OtterSec · Critical: 0",
     initials: "JX",
+    logo: "https://icons.llamao.fi/icons/protocols/jupiter?w=128&h=128",
     category: "DEX",
     network: "Solana",
     reports: 9,
@@ -585,6 +592,7 @@ const baseProjects = [
     sortDate: "2025-06-30",
     panelAuditor: "Offside Labs · DAMM v2",
     initials: "MT",
+    logo: "https://icons.llamao.fi/icons/protocols/meteora?w=128&h=128",
     category: "DEX",
     network: "Solana",
     reports: 10,
@@ -696,6 +704,7 @@ const baseProjects = [
     sortDate: "2024-01-01",
     panelAuditor: "OtterSec · Critical: 0",
     initials: "PT",
+    logo: "https://icons.llamao.fi/icons/protocols/phoenix?w=128&h=128",
     category: "DEX",
     network: "Solana",
     reports: 1,
@@ -971,7 +980,9 @@ function renderProjects() {
         return `
         <article class="project-card" data-verified="${project.verified}">
           <div class="project-meta">
-            <span class="avatar ${project.avatar}">${escapeHtml(project.initials)}</span>
+            <span class="avatar ${project.avatar}${project.logo ? ' avatar--logo' : ''}" data-initials="${escapeHtml(project.initials)}">
+              ${project.logo ? `<img src="${escapeHtml(project.logo)}" alt="${escapeHtml(project.name)}" loading="lazy" onerror="this.parentElement.classList.remove('avatar--logo');this.parentElement.innerHTML=this.parentElement.dataset.initials">` : escapeHtml(project.initials)}
+            </span>
             <div>
               <h3>${escapeHtml(project.name)}</h3>
               <p>${escapeHtml(project.category)} · ${escapeHtml(project.network)}</p>
