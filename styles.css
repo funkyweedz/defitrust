@@ -931,11 +931,24 @@ label {
   /* Prevent horizontal overflow */
   html, body {
     overflow-x: hidden;
+  }
+
+  /* Only constrain media, not all elements */
+  img, video, iframe, table {
     max-width: 100%;
   }
 
-  * {
+  /* Long strings that can blow out layout */
+  code, pre {
+    overflow-wrap: break-word;
+    word-break: break-all;
+    white-space: pre-wrap;
     max-width: 100%;
+  }
+
+  p, h1, h2, h3, a {
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   /* Header */
@@ -945,7 +958,9 @@ label {
 
   .site-header-inner,
   main {
-    width: calc(100% - 1.5rem);
+    width: min(100% - 1.5rem, 1200px);
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .site-header-inner {
@@ -1036,15 +1051,15 @@ label {
     justify-content: center;
   }
 
-  /* Stats: keep 3-col but compact */
+  /* Stats: 2-col on tablet-mobile */
   .stats {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
   }
 
   .stats article {
     min-height: auto;
-    padding: 1rem 0.6rem;
+    padding: 1.1rem 0.75rem;
   }
 
   .stats strong {
@@ -1052,7 +1067,7 @@ label {
   }
 
   .stats span, .stats a {
-    font-size: 0.78rem !important;
+    font-size: 0.82rem !important;
   }
 
   /* Sections */
@@ -1146,6 +1161,33 @@ label {
   .certificate-actions .button {
     width: 100%;
     justify-content: center;
+  }
+
+  /* Submit page h1 */
+  .submit-section h1,
+  .review-section h1 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  /* section-lead & score-disclaimer: uncap max-width */
+  .section-lead,
+  .score-disclaimer {
+    max-width: 100%;
+  }
+
+  /* content-section gap tighter */
+  .content-section {
+    margin-bottom: 2rem;
+  }
+
+  /* trust score section inside submit-section */
+  .submit-section.content-section-box {
+    padding: 1.25rem;
+  }
+
+  /* hero secondary links stack nicely */
+  .hero p [href] {
+    display: inline;
   }
 }
 
@@ -1381,16 +1423,8 @@ details[open] .faq-icon { transform: rotate(45deg); }
   }
 }
 
-/* ── Very small screens (iPhone SE etc.) ── */
-@media (max-width: 400px) {
-  .brand span {
-    display: none;
-  }
-
-  .hero h1 {
-    font-size: clamp(2rem, 13vw, 3rem);
-  }
-
+/* ── Small phones (≤480px): stats go single-column ── */
+@media (max-width: 480px) {
   .stats {
     grid-template-columns: 1fr;
     gap: 0.6rem;
@@ -1402,18 +1436,42 @@ details[open] .faq-icon { transform: rotate(45deg); }
     justify-content: space-between;
     padding: 0.9rem 1rem;
     text-align: left;
+    min-height: auto;
   }
 
   .stats strong {
     font-size: 2rem;
+    flex-shrink: 0;
   }
 
   .stats span, .stats a {
     font-size: 0.9rem !important;
+    text-align: right;
+  }
+}
+
+/* ── Very small screens (iPhone SE, 375px) ── */
+@media (max-width: 400px) {
+  .brand span {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 13vw, 3rem);
   }
 
   .hero-actions .button {
     padding: 0.9rem 1rem;
     font-size: 0.95rem;
+  }
+
+  .card-grid {
+    gap: 0.85rem;
+  }
+
+  .step-card,
+  .info-card,
+  .faq-item {
+    padding: 1rem;
   }
 }
