@@ -142,22 +142,102 @@
             <label>
               Category
               <select name="category" required>
-                <option value="">Choose</option>
-                <option>Lending</option>
-                <option>DEX</option>
-                <option>Bridge</option>
-                <option>Stablecoin</option>
+                <option value="">Choose a category</option>
+                <optgroup label="Trading &amp; Markets">
+                  <option>DEX</option>
+                  <option>Derivatives</option>
+                  <option>Perpetuals</option>
+                  <option>Options</option>
+                  <option>Prediction Market</option>
+                  <option>NFT Marketplace</option>
+                </optgroup>
+                <optgroup label="Lending &amp; Credit">
+                  <option>Lending</option>
+                  <option>CDP</option>
+                  <option>Leveraged Lending</option>
+                  <option>RWA</option>
+                </optgroup>
+                <optgroup label="Yield &amp; Liquidity">
+                  <option>Yield Aggregator</option>
+                  <option>Yield</option>
+                  <option>Liquidity Manager</option>
+                  <option>Farm</option>
+                  <option>Indexes</option>
+                </optgroup>
+                <optgroup label="Stablecoins &amp; Assets">
+                  <option>Stablecoin</option>
+                  <option>Algo-Stablecoin</option>
+                  <option>Synthetics</option>
+                  <option>Reserve Currency</option>
+                </optgroup>
+                <optgroup label="Staking &amp; Infrastructure">
+                  <option>Liquid Staking</option>
+                  <option>Restaking</option>
+                  <option>Staking</option>
+                  <option>Bridge</option>
+                  <option>Cross-chain</option>
+                  <option>Oracle</option>
+                  <option>Launchpad</option>
+                </optgroup>
+                <optgroup label="Other">
+                  <option>Insurance</option>
+                  <option>Payments</option>
+                  <option>Privacy</option>
+                  <option>Gaming</option>
+                  <option>Other</option>
+                </optgroup>
               </select>
             </label>
             <label>
               Network
               <select name="network" required>
-                <option value="">Choose</option>
-                <option>Ethereum</option>
-                <option>Arbitrum</option>
-                <option>Base</option>
-                <option>Polygon</option>
-                <option>Multi-chain</option>
+                <option value="">Choose a network</option>
+                <optgroup label="EVM — Mainnet">
+                  <option>Ethereum</option>
+                  <option>BNB Chain</option>
+                  <option>Avalanche</option>
+                  <option>Fantom</option>
+                  <option>Gnosis</option>
+                  <option>Cronos</option>
+                  <option>Celo</option>
+                  <option>Harmony</option>
+                </optgroup>
+                <optgroup label="EVM — Layer 2">
+                  <option>Arbitrum</option>
+                  <option>Base</option>
+                  <option>Optimism</option>
+                  <option>Polygon</option>
+                  <option>zkSync Era</option>
+                  <option>Polygon zkEVM</option>
+                  <option>Linea</option>
+                  <option>Scroll</option>
+                  <option>Mantle</option>
+                  <option>Blast</option>
+                  <option>Mode</option>
+                  <option>Taiko</option>
+                  <option>Berachain</option>
+                  <option>Sonic</option>
+                  <option>Metis</option>
+                  <option>Starknet</option>
+                </optgroup>
+                <optgroup label="Non-EVM">
+                  <option>Solana</option>
+                  <option>Sui</option>
+                  <option>Aptos</option>
+                  <option>Near</option>
+                  <option>Cosmos</option>
+                  <option>Tron</option>
+                  <option>TON</option>
+                  <option>Algorand</option>
+                  <option>Cardano</option>
+                  <option>Polkadot</option>
+                  <option>Stellar</option>
+                  <option>Bitcoin</option>
+                </optgroup>
+                <optgroup label="Other">
+                  <option>Multi-chain</option>
+                  <option>Other</option>
+                </optgroup>
               </select>
             </label>
             <label>
