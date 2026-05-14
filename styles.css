@@ -110,6 +110,12 @@ textarea {
   font-weight: 800;
 }
 
+.brand > span:not(.brand-mark) {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
 .brand-mark {
   display: grid;
   place-items: center;
