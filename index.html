@@ -218,26 +218,26 @@
         </article>
       </section>
 
-      <section aria-labelledby="how-it-works-title" style="margin-bottom:3rem;">
+      <section class="content-section" aria-labelledby="how-it-works-title">
         <p class="eyebrow">How it works</p>
-        <h2 id="how-it-works-title" style="font-size:clamp(1.9rem,3vw,2.8rem);margin:0 0 0.5rem;">Three steps to safer DeFi decisions</h2>
-        <p style="color:var(--muted);font-size:1.05rem;font-weight:700;max-width:640px;margin:0 0 2rem;line-height:1.7;">DeFiTrust is designed for a single purpose: make public audit information instantly accessible to anyone — users, researchers, and investors alike.</p>
+        <h2 id="how-it-works-title">Three steps to safer DeFi decisions</h2>
+        <p class="section-lead">DeFiTrust is designed for a single purpose: make public audit information instantly accessible to anyone — users, researchers, and investors alike.</p>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;">
-          <div style="padding:1.75rem;border:1px solid rgba(62,31,101,0.8);border-radius:1rem;background:rgba(30,10,60,0.85);">
-            <div style="font-size:1.5rem;font-weight:900;color:var(--mint);margin-bottom:0.75rem;">01</div>
-            <h3 style="margin:0 0 0.6rem;font-size:1.15rem;">Search the registry</h3>
-            <p style="margin:0;color:var(--muted);font-size:0.95rem;font-weight:700;line-height:1.65;">Type a protocol name, blockchain network, or auditor firm into the search bar. Filter by category — lending, DEX, bridge, stablecoin — to narrow results instantly. All 9 protocols are indexed and searchable in real time, with no account required.</p>
+        <div class="card-grid">
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <h3>Search the registry</h3>
+            <p>Type a protocol name, blockchain network, or auditor firm into the search bar. Filter by category — lending, DEX, bridge, stablecoin — to narrow results instantly. All 9 protocols are indexed and searchable in real time, with no account required.</p>
           </div>
-          <div style="padding:1.75rem;border:1px solid rgba(62,31,101,0.8);border-radius:1rem;background:rgba(30,10,60,0.85);">
-            <div style="font-size:1.5rem;font-weight:900;color:var(--mint);margin-bottom:0.75rem;">02</div>
-            <h3 style="margin:0 0 0.6rem;font-size:1.15rem;">Read the certificates</h3>
-            <p style="margin:0;color:var(--muted);font-size:0.95rem;font-weight:700;line-height:1.65;">Click any project to expand its full audit history. Each entry links directly to the original PDF report — hosted on GitHub or IPFS — so you can verify the source with one click. No paywalls, no registration, no intermediary. The raw audit data is always one step away.</p>
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <h3>Read the certificates</h3>
+            <p>Click any project to expand its full audit history. Each entry links directly to the original PDF report — hosted on GitHub or IPFS — so you can verify the source with one click. No paywalls, no registration, no intermediary. The raw audit data is always one step away.</p>
           </div>
-          <div style="padding:1.75rem;border:1px solid rgba(62,31,101,0.8);border-radius:1rem;background:rgba(30,10,60,0.85);">
-            <div style="font-size:1.5rem;font-weight:900;color:var(--mint);margin-bottom:0.75rem;">03</div>
-            <h3 style="margin:0 0 0.6rem;font-size:1.15rem;">Compare trust scores</h3>
-            <p style="margin:0;color:var(--muted);font-size:0.95rem;font-weight:700;line-height:1.65;">Every protocol receives an objective trust score out of 100 based on whether its audit reports are accessible, complete, and up to date. Broken links, missing PDFs, and outdated reports all reduce the score. Use it as a starting point — then read the actual reports before committing any funds.</p>
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <h3>Compare trust scores</h3>
+            <p>Every protocol receives an objective trust score out of 100 based on whether its audit reports are accessible, complete, and up to date. Broken links, missing PDFs, and outdated reports all reduce the score. Use it as a starting point — then read the actual reports before committing any funds.</p>
           </div>
         </div>
       </section>
@@ -283,113 +283,108 @@
           </div>
         </div>
 
-        <p style="color:var(--muted);font-size:1.05rem;font-weight:700;max-width:680px;margin:0 0 2rem;line-height:1.7;">
+        <p class="section-lead" style="max-width:680px;">
           Every protocol listed on DeFiTrust receives a trust score out of 100. The score is not an opinion — it is a transparent, rule-based assessment of the <strong style="color:var(--text);">accessibility, freshness, and completeness</strong> of each protocol's public audit trail.
         </p>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;margin-bottom:2rem;">
-
-          <div style="padding:1.5rem;border:1px solid rgba(62,31,101,0.8);border-radius:1rem;background:rgba(30,10,60,0.85);">
-            <div style="font-size:2rem;font-weight:900;background:linear-gradient(135deg,#FFB347,#E8841A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:0.5rem;">100</div>
-            <div style="font-size:0.78rem;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;color:var(--mint);margin-bottom:0.65rem;">Base score</div>
-            <p style="margin:0;color:var(--muted);font-size:0.95rem;font-weight:700;line-height:1.6;">Every protocol starts at 100. Deductions are applied only when verifiable issues are found in the public audit trail.</p>
+        <div class="card-grid">
+          <div class="info-card">
+            <div class="card-value card-value--gradient">100</div>
+            <div class="card-label">Base score</div>
+            <p>Every protocol starts at 100. Deductions are applied only when verifiable issues are found in the public audit trail.</p>
           </div>
-
-          <div style="padding:1.5rem;border:1px solid rgba(220,50,50,0.35);border-radius:1rem;background:rgba(30,10,60,0.85);">
-            <div style="font-size:2rem;font-weight:900;color:#e05555;line-height:1;margin-bottom:0.5rem;">−15</div>
-            <div style="font-size:0.78rem;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;color:#e05555;margin-bottom:0.65rem;">Broken link <span style="opacity:.6;">· per report</span></div>
-            <p style="margin:0;color:var(--muted);font-size:0.95rem;font-weight:700;line-height:1.6;">A report URL that returns a 404 or is otherwise inaccessible. Users cannot verify what they cannot read.</p>
+          <div class="info-card info-card--red">
+            <div class="card-value card-value--red">−15</div>
+            <div class="card-label card-label--red">Broken link <span style="opacity:.6;">· per report</span></div>
+            <p>A report URL that returns a 404 or is otherwise inaccessible. Users cannot verify what they cannot read.</p>
           </div>
-
-          <div style="padding:1.5rem;border:1px solid rgba(243,147,34,0.3);border-radius:1rem;background:rgba(30,10,60,0.85);">
-            <div style="font-size:2rem;font-weight:900;color:var(--mint);line-height:1;margin-bottom:0.5rem;">−4</div>
-            <div style="font-size:0.78rem;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;color:var(--mint);margin-bottom:0.65rem;">No direct PDF <span style="opacity:.6;">· per report</span></div>
-            <p style="margin:0;color:var(--muted);font-size:0.95rem;font-weight:700;line-height:1.6;">A link that points to a landing page or index instead of the actual PDF report. Slows down verification.</p>
+          <div class="info-card info-card--amber">
+            <div class="card-value card-value--amber">−4</div>
+            <div class="card-label">No direct PDF <span style="opacity:.6;">· per report</span></div>
+            <p>A link that points to a landing page or index instead of the actual PDF report. Slows down verification.</p>
           </div>
-
-          <div style="padding:1.5rem;border:1px solid rgba(243,147,34,0.3);border-radius:1rem;background:rgba(30,10,60,0.85);">
-            <div style="font-size:2rem;font-weight:900;color:var(--mint);line-height:1;margin-bottom:0.5rem;">−4 to −9</div>
-            <div style="font-size:0.78rem;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;color:var(--mint);margin-bottom:0.65rem;">Outdated report <span style="opacity:.6;">· per report</span></div>
-            <p style="margin:0;color:var(--muted);font-size:0.95rem;font-weight:700;line-height:1.6;">Audits age over time. Reports older than 24 months lose −4, &gt;36 months −6, and &gt;48 months −9. New audits reset the clock.</p>
+          <div class="info-card info-card--amber">
+            <div class="card-value card-value--amber">−4 to −9</div>
+            <div class="card-label">Outdated report <span style="opacity:.6;">· per report</span></div>
+            <p>Audits age over time. Reports older than 24 months lose −4, &gt;36 months −6, and &gt;48 months −9. New audits reset the clock.</p>
           </div>
-
         </div>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.75rem;margin-bottom:2rem;">
-          <div style="display:flex;align-items:center;gap:0.85rem;padding:1rem 1.25rem;border:1px solid rgba(62,31,101,0.8);border-radius:0.75rem;background:rgba(30,10,60,0.7);">
-            <span style="font-size:1.5rem;font-weight:900;color:#4caf7d;min-width:3rem;text-align:right;">90+</span>
+        <div class="score-legend">
+          <div class="score-item">
+            <span class="score-item-value" style="color:#4caf7d;">90+</span>
             <div>
-              <div style="font-size:0.78rem;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;color:#4caf7d;">Excellent</div>
-              <div style="font-size:0.82rem;color:var(--soft);font-weight:700;">All reports accessible &amp; recent</div>
+              <div class="score-item-label" style="color:#4caf7d;">Excellent</div>
+              <div class="score-item-desc">All reports accessible &amp; recent</div>
             </div>
           </div>
-          <div style="display:flex;align-items:center;gap:0.85rem;padding:1rem 1.25rem;border:1px solid rgba(62,31,101,0.8);border-radius:0.75rem;background:rgba(30,10,60,0.7);">
-            <span style="font-size:1.5rem;font-weight:900;color:#8bc34a;min-width:3rem;text-align:right;">75–89</span>
+          <div class="score-item">
+            <span class="score-item-value" style="color:#8bc34a;">75–89</span>
             <div>
-              <div style="font-size:0.78rem;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;color:#8bc34a;">Good</div>
-              <div style="font-size:0.82rem;color:var(--soft);font-weight:700;">Minor gaps or slightly aging audits</div>
+              <div class="score-item-label" style="color:#8bc34a;">Good</div>
+              <div class="score-item-desc">Minor gaps or slightly aging audits</div>
             </div>
           </div>
-          <div style="display:flex;align-items:center;gap:0.85rem;padding:1rem 1.25rem;border:1px solid rgba(62,31,101,0.8);border-radius:0.75rem;background:rgba(30,10,60,0.7);">
-            <span style="font-size:1.5rem;font-weight:900;color:#ffc107;min-width:3rem;text-align:right;">50–74</span>
+          <div class="score-item">
+            <span class="score-item-value" style="color:#ffc107;">50–74</span>
             <div>
-              <div style="font-size:0.78rem;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;color:#ffc107;">Moderate</div>
-              <div style="font-size:0.82rem;color:var(--soft);font-weight:700;">Outdated or incomplete audit trail</div>
+              <div class="score-item-label" style="color:#ffc107;">Moderate</div>
+              <div class="score-item-desc">Outdated or incomplete audit trail</div>
             </div>
           </div>
-          <div style="display:flex;align-items:center;gap:0.85rem;padding:1rem 1.25rem;border:1px solid rgba(62,31,101,0.8);border-radius:0.75rem;background:rgba(30,10,60,0.7);">
-            <span style="font-size:1.5rem;font-weight:900;color:#e05555;min-width:3rem;text-align:right;">&lt;50</span>
+          <div class="score-item">
+            <span class="score-item-value" style="color:#e05555;">&lt;50</span>
             <div>
-              <div style="font-size:0.78rem;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;color:#e05555;">Low</div>
-              <div style="font-size:0.82rem;color:var(--soft);font-weight:700;">Significant broken or missing data</div>
+              <div class="score-item-label" style="color:#e05555;">Low</div>
+              <div class="score-item-desc">Significant broken or missing data</div>
             </div>
           </div>
         </div>
 
-        <p style="font-size:0.88rem;color:var(--soft);font-weight:700;max-width:640px;line-height:1.65;border-left:3px solid rgba(243,147,34,0.4);padding-left:1rem;">
+        <p class="score-disclaimer">
           <strong style="color:var(--text);">The trust score reflects transparency, not protocol security.</strong> A protocol can have a perfect audit and still score below 100 if its reports are inaccessible or outdated. Conversely, a high score means the audit trail is fully open — not that the protocol is free of risk. Always read the reports directly.
         </p>
       </section>
-    </main>
 
-      <section aria-labelledby="faq-title" style="margin-bottom:3rem;">
+      <section class="content-section" aria-labelledby="faq-title">
         <p class="eyebrow">FAQ</p>
-        <h2 id="faq-title" style="font-size:clamp(1.9rem,3vw,2.8rem);margin:0 0 1.5rem;">Frequently asked questions</h2>
+        <h2 id="faq-title">Frequently asked questions</h2>
 
-        <div style="display:grid;gap:1rem;">
-          <details style="padding:1.5rem;border:1px solid rgba(62,31,101,0.8);border-radius:1rem;background:rgba(30,10,60,0.85);">
-            <summary style="font-weight:900;font-size:1.05rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+        <div class="faq-grid">
+          <details class="faq-item">
+            <summary>
               Is DeFiTrust free to use?
-              <span style="color:var(--mint);font-size:1.3rem;flex-shrink:0;">+</span>
+              <span class="faq-icon">+</span>
             </summary>
-            <p style="margin:1rem 0 0;color:var(--muted);font-size:0.97rem;font-weight:700;line-height:1.7;">Yes — completely free. DeFiTrust is an open public registry. Browsing protocols, reading certificates, checking trust scores, and submitting your own audit are all free with no registration required. Our goal is to make DeFi security information a public good, not a paid service.</p>
+            <p>Yes — completely free. DeFiTrust is an open public registry. Browsing protocols, reading certificates, checking trust scores, and submitting your own audit are all free with no registration required. Our goal is to make DeFi security information a public good, not a paid service.</p>
           </details>
 
-          <details style="padding:1.5rem;border:1px solid rgba(62,31,101,0.8);border-radius:1rem;background:rgba(30,10,60,0.85);">
-            <summary style="font-weight:900;font-size:1.05rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+          <details class="faq-item">
+            <summary>
               Does a high trust score mean the protocol is safe?
-              <span style="color:var(--mint);font-size:1.3rem;flex-shrink:0;">+</span>
+              <span class="faq-icon">+</span>
             </summary>
-            <p style="margin:1rem 0 0;color:var(--muted);font-size:0.97rem;font-weight:700;line-height:1.7;">No. The trust score measures the transparency and accessibility of a protocol's public audit trail — it does not assess the quality or depth of the audit itself. A score of 100/100 means every audit report is public, accessible as a PDF, and recent. It does not mean the smart contracts are free of vulnerabilities. Always read the underlying reports and form your own opinion.</p>
+            <p>No. The trust score measures the transparency and accessibility of a protocol's public audit trail — it does not assess the quality or depth of the audit itself. A score of 100/100 means every audit report is public, accessible as a PDF, and recent. It does not mean the smart contracts are free of vulnerabilities. Always read the underlying reports and form your own opinion.</p>
           </details>
 
-          <details style="padding:1.5rem;border:1px solid rgba(62,31,101,0.8);border-radius:1rem;background:rgba(30,10,60,0.85);">
-            <summary style="font-weight:900;font-size:1.05rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+          <details class="faq-item">
+            <summary>
               How can my protocol get listed on DeFiTrust?
-              <span style="color:var(--mint);font-size:1.3rem;flex-shrink:0;">+</span>
+              <span class="faq-icon">+</span>
             </summary>
-            <p style="margin:1rem 0 0;color:var(--muted);font-size:0.97rem;font-weight:700;line-height:1.7;">Use the <a href="/submit.html" style="color:var(--mint);text-decoration:underline;text-underline-offset:3px;">audit submission page</a> to send us your protocol's certificate. You will need to provide the project name, auditor, network, category, a link or PDF of the report, and optionally a public IPFS or SHA-256 hash. Submissions are reviewed within 48 hours and listed publicly if they meet our basic transparency requirements.</p>
+            <p>Use the <a href="/submit.html" style="color:var(--mint);text-decoration:underline;text-underline-offset:3px;">audit submission page</a> to send us your protocol's certificate. You will need to provide the project name, auditor, network, category, a link or PDF of the report, and optionally a public IPFS or SHA-256 hash. Submissions are reviewed within 48 hours and listed publicly if they meet our basic transparency requirements.</p>
           </details>
 
-          <details style="padding:1.5rem;border:1px solid rgba(62,31,101,0.8);border-radius:1rem;background:rgba(30,10,60,0.85);">
-            <summary style="font-weight:900;font-size:1.05rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+          <details class="faq-item">
+            <summary>
               Where are the audit reports stored?
-              <span style="color:var(--mint);font-size:1.3rem;flex-shrink:0;">+</span>
+              <span class="faq-icon">+</span>
             </summary>
-            <p style="margin:1rem 0 0;color:var(--muted);font-size:0.97rem;font-weight:700;line-height:1.7;">DeFiTrust links directly to the original source — usually the protocol's own GitHub repository or their official security page. We do not re-host or modify the documents. For long-term immutability, we encourage protocols to store their reports on IPFS or Arweave so that the links remain valid indefinitely, regardless of what happens to a centralized hosting provider.</p>
+            <p>DeFiTrust links directly to the original source — usually the protocol's own GitHub repository or their official security page. We do not re-host or modify the documents. For long-term immutability, we encourage protocols to store their reports on IPFS or Arweave so that the links remain valid indefinitely, regardless of what happens to a centralized hosting provider.</p>
           </details>
         </div>
       </section>
+    </main>
 
     <script src="/app.js" defer></script>
     <noscript>
