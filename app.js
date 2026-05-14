@@ -1,12 +1,20 @@
 const STORAGE_KEY = "defitrust-submissions";
 const MAX_CERTIFICATE_SIZE = 2 * 1024 * 1024;
 
+function hexToRgba(hex, alpha) {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
 const baseProjects = [
   {
     name: "Aave V3",
     sortDate: "2025-01-22",
     panelAuditor: "Sherlock · Critical: 0",
     initials: "AV",
+    brandColor: "#B6509E",
     logo: "https://icons.llamao.fi/icons/protocols/aave-v3?w=128&h=128",
     category: "Lending",
     network: "ETH",
@@ -106,6 +114,7 @@ const baseProjects = [
     sortDate: "2024-08-30",
     panelAuditor: "OpenZeppelin · Critical: 1 resolved",
     initials: "UV",
+    brandColor: "#FF007A",
     logo: "https://icons.llamao.fi/icons/protocols/uniswap-v4?w=128&h=128",
     category: "DEX",
     network: "ETH/ARB",
@@ -192,6 +201,7 @@ const baseProjects = [
     sortDate: "2025-01-01",
     panelAuditor: "ChainSecurity · Fast Bridge",
     initials: "CF",
+    brandColor: "#3466B2",
     logo: "https://icons.llamao.fi/icons/protocols/curve?w=128&h=128",
     category: "DEX",
     network: "Multi",
@@ -258,6 +268,7 @@ const baseProjects = [
     sortDate: "2023-12-14",
     panelAuditor: "OtterSec · Critical: 0",
     initials: "LZ",
+    brandColor: "#80C8FF",
     logo: "https://icons.llamao.fi/icons/protocols/layerzero?w=128&h=128",
     category: "Bridge",
     network: "Multi-chain",
@@ -330,6 +341,7 @@ const baseProjects = [
     sortDate: "2024-10-31",
     panelAuditor: "Cyfrin · Critical: 0",
     initials: "EN",
+    brandColor: "#00D5BD",
     logo: "https://icons.llamao.fi/icons/protocols/ethena?w=128&h=128",
     category: "Stablecoin",
     network: "ETH",
@@ -430,6 +442,7 @@ const baseProjects = [
     sortDate: "2024-01-05",
     panelAuditor: "Cantina · Critical: 0",
     initials: "MB",
+    brandColor: "#2470FF",
     logo: "https://icons.llamao.fi/icons/protocols/morpho-blue?w=128&h=128",
     category: "Lending",
     network: "ETH/Base",
@@ -496,6 +509,7 @@ const baseProjects = [
     sortDate: "2025-11-20",
     panelAuditor: "OtterSec · Critical: 0",
     initials: "JX",
+    brandColor: "#C7F284",
     logo: "https://icons.llamao.fi/icons/protocols/jupiter?w=128&h=128",
     category: "DEX",
     network: "Solana",
@@ -592,6 +606,7 @@ const baseProjects = [
     sortDate: "2025-06-30",
     panelAuditor: "Offside Labs · DAMM v2",
     initials: "MT",
+    brandColor: "#9945FF",
     logo: "https://icons.llamao.fi/icons/protocols/meteora?w=128&h=128",
     category: "DEX",
     network: "Solana",
@@ -704,6 +719,7 @@ const baseProjects = [
     sortDate: "2024-01-01",
     panelAuditor: "OtterSec · Critical: 0",
     initials: "PT",
+    brandColor: "#F56C0B",
     logo: "https://icons.llamao.fi/icons/protocols/phoenix?w=128&h=128",
     category: "DEX",
     network: "Solana",
@@ -977,35 +993,45 @@ function renderProjects() {
     .map(
       (project) => {
         const projectKey = encodeURIComponent(project.name);
+        const accent = project.brandColor || '#f39322';
+        const accentGlow = hexToRgba(accent, 0.13);
+        const accentFaint = hexToRgba(accent, 0.07);
         return `
-        <article class="project-card" data-verified="${project.verified}">
-          <div class="project-meta">
+        <article class="project-card" data-verified="${project.verified}" style="--accent:${accent};--accent-glow:${accentGlow};--accent-faint:${accentFaint}">
+          <div class="card-header">
             <span class="avatar ${project.avatar}${project.logo ? ' avatar--logo' : ''}" data-initials="${escapeHtml(project.initials)}">
               ${project.logo ? `<img src="${escapeHtml(project.logo)}" alt="${escapeHtml(project.name)}" loading="lazy" onerror="this.parentElement.classList.remove('avatar--logo');this.parentElement.innerHTML=this.parentElement.dataset.initials">` : escapeHtml(project.initials)}
             </span>
-            <div>
+            <div class="card-header-text">
               <h3>${escapeHtml(project.name)}</h3>
               <p>${escapeHtml(project.category)} · ${escapeHtml(project.network)}</p>
+              <span class="status-pill ${project.verified ? "" : "pending"}">
+                ${project.verified ? "✓ Certified" : "Under review"}
+              </span>
             </div>
           </div>
-          <span class="status-pill ${project.verified ? "" : "pending"}">
-            ${project.verified ? "Certified" : "Under review"}
-          </span>
-          <div>
+          <div class="card-score">
             <div class="score-line">
               <span>Trust score</span>
               <strong>${project.score}/100</strong>
             </div>
             <div class="risk-bar" aria-label="Trust score ${project.score} out of 100">
-              <span style="width: ${project.score}%; background: ${scoreColor(project.score)}"></span>
+              <span style="width:${project.score}%;background:${scoreColor(project.score)}"></span>
             </div>
           </div>
-          <div class="project-footer">
-            <span>${project.reports} ${project.reports > 1 ? "reports" : "report"}</span>
-            <span>${escapeHtml(project.tvl)} TVL</span>
+          <div class="card-stats">
+            <div class="card-stat">
+              <strong>${project.reports}</strong>
+              <span>${project.reports > 1 ? "reports" : "report"}</span>
+            </div>
+            <div class="card-stat-divider"></div>
+            <div class="card-stat">
+              <strong>${escapeHtml(project.tvl)}</strong>
+              <span>TVL</span>
+            </div>
           </div>
           <button class="button secondary view-audits" type="button" data-project="${projectKey}">
-            View audits
+            View audits →
           </button>
         </article>
       `;
