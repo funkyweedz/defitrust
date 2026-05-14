@@ -1149,6 +1149,48 @@ label {
   }
 }
 
+/* ── FAQ accordion toggle ── */
+details summary::-webkit-details-marker { display: none; }
+details[open] summary span { transform: rotate(45deg); display: inline-block; }
+
+/* ── Mobile: inline grid blocks (trust score, how-it-works, FAQ) ── */
+@media (max-width: 720px) {
+  /* Force single column on all auto-fit grids inside sections */
+  .submit-section [style*="grid-template-columns"],
+  .submit-section [style*="repeat(auto-fit"],
+  section [style*="repeat(auto-fit"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Score range row → stack vertically */
+  section [style*="minmax(180px"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Submit page info cards */
+  .submit-section [style*="minmax(220px"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Review tools wrap on small screens */
+  .review-tools {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .review-tools .button,
+  .review-tools label {
+    flex: 1 1 auto;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* FAQ details padding */
+  details {
+    padding: 1.1rem !important;
+  }
+}
+
 /* ── Very small screens (iPhone SE etc.) ── */
 @media (max-width: 400px) {
   .brand span {

@@ -30,11 +30,14 @@
       gtag('js', new Date());
       gtag('config', 'G-XN7J2KHP91');
     </script>
-    <link rel="icon" href="/logo.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/logo.svg" />
+    <link rel="icon" href="/logo.svg" type="image/svg+xml" sizes="any" />
+    <link rel="icon" href="/logo.svg" sizes="192x192" />
+    <link rel="icon" href="/logo.svg" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/logo.svg" sizes="180x180" />
     <meta name="theme-color" content="#13062a" />
     <link rel="preload" href="/styles.css?v=3" as="style" />
-    <link rel="stylesheet" href="/styles.css?v=3" />
+    <link rel="stylesheet" href="/styles.css?v=3" media="print" onload="this.onload=null;this.media='all'" />
+    <noscript><link rel="stylesheet" href="/styles.css?v=3" /></noscript>
     <style>
       .blog-hero {
         padding: clamp(3rem, 6vw, 5rem) 0 2.5rem;

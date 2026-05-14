@@ -1,0 +1,2 @@
+# DeFiTrust does not run programmatic advertising.
+# This file exists to satisfy ads.txt validation checks.
